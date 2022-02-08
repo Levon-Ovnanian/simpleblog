@@ -1,6 +1,7 @@
 .layout {
     width: 1000px;
     margin: 0% auto;
+    
 }
 
 .layout tr td {
@@ -39,3 +40,5 @@ a, a:visited {
     height: 600px;
     width: 350px;
 }
+
+

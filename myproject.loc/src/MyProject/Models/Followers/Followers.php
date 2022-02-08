@@ -154,7 +154,7 @@ class Followers extends ActiveRecordEntity
         foreach ($users as $user) {
             $email = $user->getEmail();
             $value  = "'" . $email . "' OR followers_table.author_email LIKE '%," . $email . ",%' OR followers_table.author_email LIKE '%," . $email . "' OR followers_table.author_email LIKE '" . $email . ",%'";
-            $result = $db->query("SELECT * FROM users INNER JOIN followers_table ON followers_table.follower_email = users.email
+            $result = $db->query("SELECT users.* FROM users INNER JOIN followers_table ON followers_table.follower_email = users.email
                 WHERE followers_table.author_email = ". $value .";",
                 [],
                 User::class

@@ -1,7 +1,6 @@
 <?php include __DIR__ . '/../users/headerForUsersManager.php'; ?>
 
-
-<tr>    
+<tr style="">    
     <td style="border: 2px black solid;">       
         <img src="http://176.36.123.219/uploads/profile_images/<?= $userManaged->getIconPath(); ?>" height="80px" id= "<?= $userManaged->getId(); ?>"> 
         <a href="/user/<?= $userManaged->getId();?>"><h3><?= $userManaged->getNickName(); ?></h3></a>
@@ -198,34 +197,38 @@
 </tr>
 <tr>
     <td>
-        <p>Фолловеры:</p>
-        <p>Количество фолловеров: <?= count($followers[0]); ?></p>
-        <?php if (!empty($followers[0])):?>
-            <?php foreach($followers[0] as $follower):?>
-                <img src="http://176.36.123.219/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
-                <p>Логин: <?= $follower->getNickName(); ?>
-                <p>Почта: <?= $follower->getEmail(); ?>
-                <br>
-                <hr>
-                <br>
-            <?php endforeach;?>               
-        <?php endif;?>
-    </td>                            
-    <td>
-        <p>Подписки:</p>
-        <p>Количество авторов: <?= count($subscribes[0]); ?></p>
-        <?php if (!empty($subscribes[0])):?>
-            <?php for ($x = 0; $x < count($subscribes[0]); $x++):?>
-                <?php foreach($subscribes[0][$x] as $subscribe):?>
-                    <img src="http://176.36.123.219/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
-                    <p>Логин: <?= $subscribe->getNickName(); ?>
-                    <p>Почта: <?= $subscribe->getEmail(); ?>
+        <div style="overflow:auto; height: 600px; width: 470px;">
+            <p>Фолловеры:</p>
+            <p>Количество фолловеров: <?= count($followers[0]); ?></p>
+            <?php if (!empty($followers[0])):?>
+                <?php foreach($followers[0] as $follower):?>
+                    <img src="http://176.36.123.219/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
+                    <p>Логин: <a href ="/user/<?= $follower->getId(); ?>"><?= $follower->getNickName(); ?></a>
+                    <p>Почта: <?= $follower->getEmail(); ?>
                     <br>
                     <hr>
                     <br>
-                <?php endforeach;?>
-            <?php endfor;?>
-        <?php endif;?>
+                <?php endforeach;?>               
+            <?php endif;?>
+        </div>
+    </td>                            
+    <td>
+        <div style="overflow:auto; height: 600px; width: 470px;">
+            <p>Подписки:</p>
+            <p>Количество авторов: <?= count($subscribes[0]); ?></p>
+            <?php if (!empty($subscribes[0])):?>
+                <?php for ($x = 0; $x < count($subscribes[0]); $x++):?>
+                    <?php foreach($subscribes[0][$x] as $subscribe):?>
+                        <img src="http://176.36.123.219/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
+                        <p>Логин: <a href ="/user/<?= $subscribe->getId(); ?>"><?= $subscribe->getNickName(); ?></a>
+                        <p>Почта: <?= $subscribe->getEmail(); ?>
+                        <br>
+                        <hr>
+                        <br>
+                    <?php endforeach;?>
+                <?php endfor;?>
+            <?php endif;?>
+        </div>
     </td>
 </tr>
 </span>   

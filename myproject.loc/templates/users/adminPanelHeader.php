@@ -5,7 +5,7 @@
         <title>Simple blog</title>
         <link rel="stylesheet" href="/styles.css">
     </head>
-    <body >
+    <body>
         <table class="layout">
             <tr>
                 <td colspan="3" class="header">
