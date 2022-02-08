@@ -7,7 +7,7 @@
                 <br>
                 <br>
                 Посети мой репозиторий GitHub если нужен README файл или исходный код  
-                <a href="https://github.com/Levon-Ovnanian/myproject">GitHub</a>
+                <a href="https://github.com/Levon-Ovnanian/simpleblog">GitHub</a>
             </h3>     
         </div>
     </td>
