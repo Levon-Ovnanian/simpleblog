@@ -1,11 +1,6 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-/* or 
-spl_autoload_register(function(string $className){
-    require_once __DIR__  . '/../src/' . $className . '.php';
-});
-*/
 
 try{
     $route = $_GET['route'] ?? '';
