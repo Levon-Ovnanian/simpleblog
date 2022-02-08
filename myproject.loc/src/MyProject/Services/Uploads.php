@@ -13,7 +13,7 @@ class Uploads
         $srcFileName = $file['name'];
         $newFilePath = __DIR__ . '/../../../www/uploads/profile_images/' . $user->getNickname() . '_' . $user->getEmail() . '/';
         $newFileName = $newFilePath . $srcFileName;
-        $allowedExtensions = ['jpg', 'png', 'gif','jpeg'];
+        $allowedExtensions = ['jpg', 'png','PNG', 'gif','jpeg'];
         $extension = pathinfo($srcFileName, PATHINFO_EXTENSION);
         if ($file['error'] === 4) {
             throw new UploadException('Вы не выбрали файл');
