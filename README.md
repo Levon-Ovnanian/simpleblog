@@ -44,7 +44,7 @@ After comparing the activation code and user ID received from link your account 
 Go to user cabinet to:
     - see your rating;<br>
     - see list of your followers and your subscriptions;<br>
-    - download your account logo but be shore it has the extension `png` or `jpg` or `gif`  and file size is `less than 1mb` or it         will be rejected;<br>
+    - download your account logo but be shore it has the extension `png` or `jpg`,`jpeg` or `gif` and file size is `less than 1mb` or it         will be rejected;<br>
     - `disable or enable notifications switches:`
       - get email notification if user you are subscribed wrote new article;
       - get email notification if someone left comment on your article page;
