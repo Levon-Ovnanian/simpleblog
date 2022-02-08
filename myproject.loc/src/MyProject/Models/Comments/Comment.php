@@ -26,7 +26,7 @@ class Comment extends ActiveRecordEntity
      *
      * @return string
      */
-    protected static function getTableName(): strin
+    protected static function getTableName(): string
     {
         return 'users_comments';
     }
