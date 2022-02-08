@@ -7,10 +7,15 @@
 <?php if(!empty($error)): ?>
     <div style="color: red;"><?= $error; ?></div>
 <?php endif; ?>
+<?php if (empty($_POST['text']) OR !strlen(trim($_POST['text']))) : ;?>
+    <?php $valueText = $comment->getText(); ?>
+<?php else: ;?>
+    <?php $valueText = $_POST['text']; ?>    
+<?php endif; ?>
 <br> 
-<form action="/article/<?= $article->getId(); ?>/editcomment/<?= $comment->getId(); ?>" method="post">
+<form action="/article/<?= $article->getId(); ?>/editcomment/<?= $comment->getId(); ?>/<?= $currentPage; ?>/<?= $orderBy; ?>/<?= $searchPanelArgs[0]; ?>/<?= $searchPanelArgs[1]; ?>" method="post">
     <label for="text">Окно редактирования комментария</label><br>
-    <textarea name="text" id="text" rows="7" cols="50" value="<?= $_POST['text']?>"><?= $comment->getText(); ?></textarea><br>
+    <textarea name="text" id="text" rows="7" cols="50" value=""><?= $valueText; ?></textarea><br>
     <br>
 <input type="submit" value="Отправить">
 </form>

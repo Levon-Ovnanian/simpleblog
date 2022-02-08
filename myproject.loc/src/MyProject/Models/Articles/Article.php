@@ -237,11 +237,25 @@ class Article extends ActiveRecordEntity
      */
     public function updateFromArray(array $fields): Article
     {
-        if (empty($fields['name'])) {
+        if (!strlen(trim($fields['name'])) AND !preg_match('/^[0]$/', $fields['name'])) {
+            throw new InvalidArgumentException('Не передано название статьи');
+        }  
+        if (empty($fields['name']) AND !preg_match('/^[0]$/', $fields['name'])) {
             throw new InvalidArgumentException('Не передано название статьи');
         }
-        if (empty($fields['text'])) {
+        
+        if (preg_match('/^[0]$/', $fields['name'])) {
+            $fields['name'] = '0 ';
+        }
+        if (!strlen(trim($fields['text'])) AND !preg_match('/^[0]$/', $fields['text'])) {
             throw new InvalidArgumentException('Не передан текст статьи');
+        }  
+        if (empty($fields['text']) AND !preg_match('/^[0]$/', $fields['text'])) {
+            throw new InvalidArgumentException('Не передан текст статьи');
+        }
+        
+        if (preg_match('/^[0]$/', $fields['text'])) {
+            $fields['text'] = '0 ';
         }
 
         $this->setName($fields['name']);

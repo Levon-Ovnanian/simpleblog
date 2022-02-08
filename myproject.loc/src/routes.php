@@ -15,7 +15,7 @@ return [
     '~^article/(\d+)/minuscomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'minusComment'],
     '~^articles/(\d+)/plusarticle/(\d+)/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\ArticlesController::class, 'plusArticle'],
     '~^articles/(\d+)/minusarticle/(\d+)/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\ArticlesController::class, 'minusArticle'],
-    '~^article/(\d+)/editcomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'editComment'],
+    '~^article/(\d+)/editcomment/(\d+)/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\CommentsController::class, 'editComment'],
     '~^users/register$~' => [\MyProject\Controllers\UsersController::class, 'signUp'],
     '~^users/(\d+)/activate/(.+)$~' => [\MyProject\Controllers\UsersController::class, 'activate'],
     '~^users/login$~' => [\MyProject\Controllers\UsersController::class, 'login'],
@@ -24,7 +24,7 @@ return [
     '~^users/edit/personal/(\d+)$~' => [\MyProject\Controllers\UsersController::class, 'usersManagerPersonalPage'],
     '~^user/(\d+)$~' => [\MyProject\Controllers\UsersController::class, 'userPage'],
     '~^users/cabinet/personalpage$~' => [\MyProject\Controllers\UsersController::class, 'userPersonalCabinet'],
-    '~^article/(\d+)/comments/(\d+)/delete$~' => [\MyProject\Controllers\CommentsController::class, 'deleteComment'],
+    '~^comments/(\d+)/delete/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\CommentsController::class, 'deleteComment'],
     '~^adminpanel$~' => [\MyProject\Controllers\UsersController::class, 'adminPanelMain'],
     '~^adminpanel/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\UsersController::class, 'adminPanelPagesViewer'],
 ];

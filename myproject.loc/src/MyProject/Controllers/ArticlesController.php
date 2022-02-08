@@ -127,11 +127,20 @@ class ArticlesController extends AbstractController
             }
             if (!empty($_POST)) {
                 $article->updateFromArray($_POST);
+                
                 header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
                 exit();
             }
         } catch (InvalidArgumentException $e) {
-            $this->view->renderHtml('articles/edit.php', ['error' => $e->getMessage(), 'article' => $article]);
+            $this->view->renderHtml('articles/edit.php', 
+                [
+                    'error' => $e->getMessage(),
+                    'article' => $article,
+                    'currentPage' => $currentPage, 
+                    'orderBy' => $searchPanelName, 
+                    'searchPanelArgs' => $searchArgs
+                ]
+            );
             return;
         } 
         
@@ -171,6 +180,7 @@ class ArticlesController extends AbstractController
 
         Comment::deleteWithArticle($articleId);
         $articles->delete();
+        
         header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
         exit();
     }

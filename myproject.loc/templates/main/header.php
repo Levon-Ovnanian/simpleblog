@@ -15,7 +15,6 @@
             </tr>
             <tr>
                 <td  colspan="2" style="text-align: right">
-                    <?= $date; ?>
                     <?php if (!empty($user)): ?>
                         <a href="/users/cabinet/personalpage">Кабинет пользователя</a>
                         Привет, <?= $user->getNickname(); ?> | <a href="/users/logout">Выйти</a>

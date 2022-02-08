@@ -24,7 +24,7 @@
                         <?= $commentData->getRedactedAt() ; ?></span>
                     <?php endif; ?>
                 <?php else: ?>
-                    <?= $commentData->getShortText(150); ?></p>   
+                    <?= $commentData->getShortText(150); ?></p> 
                     <span>автор комментария :<?= $commentData->getUserId()->getNickname(); ?></span>
                     <br>
                     <span> <?= $commentData->getCreatedAt(); ?></span>
@@ -35,7 +35,10 @@
                     <?php endif; ?>            
                 <?php endif; ?>
                 <hr>
-                <a href="/article/<?= $commentData->getArticleId(); ?>/editcomment/<?= $commentData->getId(); ?>">Редактировать </a>|<a style="color: red;" href="/article/<?= $commentData->getArticleId(); ?>/comments/<?= $commentData->getId()?>/delete"> Удалить</a> 
+                <a href="/article/<?= $commentData->getArticleId(); ?>/editcomment/<?= $commentData->getId(); ?>/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs; ?>">Редактировать</a>
+                | <a style="color: red;" href="/comments/<?= $commentData->getId()?>/delete/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>" style="color: red;">Удалить</a> 
+                <br>
+                <br>
             <?php endforeach; ?>        
         <?php endfor; ?>
     <?php else : ?>      

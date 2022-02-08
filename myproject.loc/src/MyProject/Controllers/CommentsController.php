@@ -62,7 +62,7 @@ class CommentsController extends AbstractController
      * @param integer $commentId
      * @return void
      */
-    public function editComment(int $articleId, int $commentId): void
+    public function editComment(int $articleId, int $commentId, int $currentPage, string $searchPanelName, string $searchArgs): void
     {
         if ($this->user === null) {
             throw new UnauthorizedException();
@@ -79,19 +79,42 @@ class CommentsController extends AbstractController
         if ($comment === null) {
             throw new NotFoundException('Комментарий для редактирования не найден');
         }
+
+        $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
+        if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            $searchArgAsArray[0] ='null';
+        }
         
-        if (!empty($_POST['text'])) {
+        if (!empty($_POST)) {
             try {
                 $comment->updateFromArray($_POST);
-                header('Location: /articles/' . $article->getId(). '#' . $comment->getId(), true, 302);
+                header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
                 exit();
+                
             } catch (InvalidArgumentException $e) {
-                $this->view->renderHtml('comments/editComment.php', ['error' => $e->getMessage(), 'article' => $article, 'comment' => $comment]);
+                $this->view->renderHtml('comments/editComment.php', 
+                    [
+                        'error' => $e->getMessage(),
+                        'article' => $article,
+                        'comment' => $comment,
+                        'currentPage' => $currentPage,
+                        'orderBy' => $searchPanelName, 
+                        'searchPanelArgs' => $searchArgs
+                    ]
+                );
                 return;
             }
         }
 
-        $this->view->renderHtml('comments/EditComment.php', ['article' => $article, 'comment' => $comment]);
+        $this->view->renderHtml('comments/EditComment.php', 
+            [
+                'article' => $article,
+                'comment' => $comment,
+                'currentPage' => $currentPage,
+                'orderBy' => $searchPanelName, 
+                'searchPanelArgs' => $searchArgs
+            ]
+        );
     }
     
     /**
@@ -246,7 +269,7 @@ class CommentsController extends AbstractController
      * @param integer $commentId
      * @return void
      */
-    public function deleteComment(int $articleId, int $commentId): void
+    public function deleteComment(int $commentId,  int $currentPage, string $searchPanelName, string $searchArgs): void
     {
         if ($this->user === null) {
             throw new UnauthorizedException();
@@ -260,8 +283,13 @@ class CommentsController extends AbstractController
             throw new NotFoundException('Комментарий не найден');
         }
 
+        $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
+        if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            $searchArgAsArray[0] ='null';
+        }
+
         Comment::deleteComment($comment);
-        header('Location: /articles/' . $articleId, true, 302);
+        header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
         exit();
     }    
 }

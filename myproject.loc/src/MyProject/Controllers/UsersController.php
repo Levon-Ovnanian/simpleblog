@@ -417,7 +417,8 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        //throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articles = Article::getPageWithSearchArgsASC($pageNum, $itemsPerPage, $searchArgAsArray);
                 }    
@@ -429,7 +430,7 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articles = Article::getPageWithSearchArgs($pageNum, $itemsPerPage, $searchArgAsArray);
                 }       
@@ -441,7 +442,7 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articles = Article::getArticlesWithCommentsBySearchArgsLimited($pageNum, $itemsPerPage, $searchArgAsArray);
                 }
@@ -453,7 +454,7 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articles = Article::getArticlesWithCommentsBySearchArgsLimitedASC($pageNum, $itemsPerPage, $searchArgAsArray);
                 } else {
@@ -465,7 +466,7 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articles = Article::getPageWithSearchArgs($pageNum, $itemsPerPage, $searchArgAsArray);
                 }
@@ -476,7 +477,7 @@ class UsersController extends AbstractController
                     $pagesAndArticlesCounter = Article::getPagesCount($itemsPerPage);
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getPageASC($pageNum, $itemsPerPage, 'articles.id ASC');
@@ -485,7 +486,7 @@ class UsersController extends AbstractController
                     $pagesAndArticlesCounter = Article::getPagesCount($itemsPerPage);
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getPage($pageNum, $itemsPerPage, 'articles.id DESC');
@@ -497,7 +498,7 @@ class UsersController extends AbstractController
                         throw new NotFoundException('Статей с комментариями пока нет');
                     }
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getArticlesWithCommentsLimited($pageNum, $itemsPerPage, 'DESC');
@@ -509,7 +510,7 @@ class UsersController extends AbstractController
                         throw new NotFoundException('Статей с комментариями пока нет');
                     }
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getArticlesWithCommentsASCLimited($pageNum, $itemsPerPage, 'ASC');
