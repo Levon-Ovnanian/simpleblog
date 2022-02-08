@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 07 2022 г., 16:29
+-- Время создания: Фев 08 2022 г., 16:18
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.4.21
 
@@ -51,26 +51,6 @@ CREATE TABLE `followers_table` (
   `author_email` text COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Дамп данных таблицы `followers_table`
---
-
-INSERT INTO `followers_table` (`id`, `follower_email`, `author_email`) VALUES
-(70, 'farabara066@gmail.com', 'levon.ovnanian@gmail.com,admin@admin.com'),
-(71, 'levon.ovnanian@gmail.com', 'admin@admin.com,levon.ovnanian@gmail.com,farabara066@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `images`
---
-
-CREATE TABLE `images` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `icon_image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -94,15 +74,6 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `rating` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `nickname`, `email`, `is_confirmed`, `icon_path`, `email_send_if_article`, `email_send_if_comment`, `email_send_if_add_follower`, `email_send_if_dell_follower`, `role`, `status`, `password_hash`, `auth_token`, `created_at`, `rating`) VALUES
-(1, 'admin', 'admin@admin.com', 1, 'person-1824144.svg', 0, 0, 0, 0, 'admin', 'active', '$2y$10$9/pSD4o1NEHu7g40fPkkKOi67t.23fBY19ubL8MMv3eS5ufM5QerS', 'f9d0ea9de45b99f1144ef5f510f0d3eeadb01cd9509c291a1ebb55335c937ac0210b2af52dcbf6d5', '2021-11-16 17:10:44', 1),
-(3, 'Ana', 'levon.ovnanian@gmail.com', 1, 'person-1824144.svg', 0, 0, 0, 0, 'user', 'active', '$2y$10$pa5JYkh6FKefuWYZpMNBAub741wPSod3jDufuVj7RaerOVzpyuXKq', '448a8bb5be8614d9835f5ae231b7e5844fa4b4c2ec53d97ffc16cf79e326f7b6aa3c30993a3fe9e1', '2021-09-30 15:33:27', 0),
-(16, 'Uliana', 'farabara066@gmail.com', 1, 'person-1824144.svg', 0, 0, 0, 0, 'user', 'active', '$2y$10$.IyyNQ5x04fdOF1bSp4mXO7U4sPLfkCpkbR3LrG.65mLkvWgxN3oe', '9061d471a8c778f20db7bc443b38ec678f701cdee74661c234a04198b31d36887fa3f738e016665b', '2021-12-21 16:00:40', 0);
 
 -- --------------------------------------------------------
 
@@ -154,12 +125,6 @@ ALTER TABLE `followers_table`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `images`
---
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -187,37 +152,31 @@ ALTER TABLE `users_comments`
 -- AUTO_INCREMENT для таблицы `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=584;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=609;
 
 --
 -- AUTO_INCREMENT для таблицы `followers_table`
 --
 ALTER TABLE `followers_table`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
-
---
--- AUTO_INCREMENT для таблицы `images`
---
-ALTER TABLE `images`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблицы `users_activation_codes`
 --
 ALTER TABLE `users_activation_codes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT для таблицы `users_comments`
 --
 ALTER TABLE `users_comments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

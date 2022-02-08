@@ -5,8 +5,8 @@
                         <li><a href="/">Главная страница</a></li>
                         <li><a href="/articles/add">Создать статью</a></li> 
                         <?php if ($user->isAdmin()): ?>
-                            <li><a href="/adminpanel">Админка</a></li>     
-                            <li><a href="/users/manager/date/DESC">Менеджер пользователей</a></li>
+                            <li><a href="/adminpanel" style="color: red;">Стрaница администрaтора</a></li>     
+                            <li><a href="/users/manager/date/DESC" style="color: red;">Менеджер пользователей</a></li>
                         <?php endif; ?>
                     </ul>
                 </td>

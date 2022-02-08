@@ -35,6 +35,7 @@
                     <?php endif; ?>            
                 <?php endif; ?>
                 <hr>
+                <a href="/article/<?= $commentData->getArticleId(); ?>/editcomment/<?= $commentData->getId(); ?>">Редактировать </a>|<a style="color: red;" href="/article/<?= $commentData->getArticleId(); ?>/comments/<?= $commentData->getId()?>/delete"> Удалить</a> 
             <?php endforeach; ?>        
         <?php endfor; ?>
     <?php else : ?>      

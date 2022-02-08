@@ -32,11 +32,5 @@ Cтатус пользователя: <span style="color: red;"><?= $articles->g
     <?php endif; ?>
 <?php endif; ?>       
 <br> 
-<?php include __DIR__ . '/../main/comments.php'; ?>
-    
-<?php if (!empty($user AND $user->isAdmin())) : ?>  
-    <p><a href="/articles/<?= $articles->getId(); ?>/edit">Редактировать статью</a> </p>
-    <p><a href="/articles/<?= $articles->getId(); ?>/delete" style="color: red;">Удалить статью</a> </p>
-<?php endif; ?>
-    
+<?php include __DIR__ . '/../main/comments.php'; ?>    
 <?php include __DIR__ . '/../main/footer.php'; ?>

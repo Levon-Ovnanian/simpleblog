@@ -60,23 +60,24 @@
                         <?php else : ?>
                             <span>только что</span>               
                         <?php endif; ?>
+                    <br>     
                     <?php endif; ?>  
                     <br> 
                     <?php if (!empty($user)): ?>
                         <a href="/article/<?= $articles->getId(); ?>/answercomment/<?= $comments[$i]->getId(); ?>">Ответить</a>
                     <?php endif; ?>
                     <br>   
-                    <?php if (!empty($user) AND $user->isAdmin()): ?>
-                        <a href="/article/<?= $articles->getId(); ?>/editcomment/<?= $comments[$i]->getId(); ?>">Редактировать </a>|<a style="color: red;" href="/article/<?= $articles->getId(); ?>/comments/<?= $comments[$i]->getId()?>/delete"> Удалить</a> 
-                    <?php endif; ?>
                 </div>   
             <?php else: ?>
                 <div>
                     <span id= "<?= $comments[$i]->getId(); ?>"></span>
-                    <p><img src="http://176.36.123.219/uploads/profile_images/<?=$comments[$i]->getUserId()->getIconPath(); ?>" height="50px">
-                        <br>
-                        <?= $comments[$i]->getUserId()->getNickname(); ?>
-                        <?= $comments[$i]->getParsedText(); ?>
+                    <p><img src="http://176.36.123.219/uploads/profile_images/<?=$comments[$i]->getUserId()->getIconPath(); ?>" height="50px"><br>
+                    <?= $comments[$i]->getUserId()->getNickname(); ?>
+                    <br>
+                    статус пользов.:<span style="color: red;"><?= $comments[$i]->getUserId()->getStatus(); ?></span>
+                    <br>
+                    рейтинг: <?= $comments[$i]->getUserId()->getRating(); ?>
+                    <?= $comments[$i]->getParsedText(); ?>
                     </p>
                     
                     <a href="/article/<?= $articles->getId(); ?>/pluscomment/<?= $comments[$i]->getId(); ?>"><img src="http://176.36.123.219/service_images/arrow_up154593.svg" height="10px"></a><?= $comments[$i]->getPlus(); ?>
@@ -84,22 +85,22 @@
                     <br><br>
                     <?php if($createdAtDates[$i][0] !== '0'): ?>   
                         <?php if($createdAtDates[$i][1] !== '0'): ?>
-                            <span><?= ($createdAtDates[$i][0]);?> лет </span>
-                            <span><?= ($createdAtDates[$i][1]);?> мес. назад</span>
+                            <span style="text-decoration: underline;"><?= ($createdAtDates[$i][0]);?> лет </span>
+                            <span style="text-decoration: underline;"><?= ($createdAtDates[$i][1]);?> мес. назад</span>
                         <?php else: ?>
-                            <span><?= ($createdAtDates[$i][0]);?> лет назад</span>
+                            <span style="text-decoration: underline;"><?= ($createdAtDates[$i][0]);?> лет назад</span>
                         <?php endif; ?>    
                     <?php elseif($createdAtDates[$i][1] !== '0'): ?>   
-                        <span><?= ($createdAtDates[$i][1]);?> мес. назад</span>
+                        <span style="text-decoration: underline;"><?= ($createdAtDates[$i][1]);?> мес. назад</span>
                     <?php elseif($createdAtDates[$i][2] !== '0'): ?>   
-                        <span><?= ($createdAtDates[$i][2]);?> дней. назад</span>
+                        <span style="text-decoration: underline;"><?= ($createdAtDates[$i][2]);?> дней. назад</span>
                     <?php elseif($createdAtDates[$i][3] !== '0'): ?>  
-                        <span><?= ($createdAtDates[$i][3]);?> час.</span>
-                        <span><?= ($createdAtDates[$i][4]);?> мин. назад</span> 
+                        <span style="text-decoration: underline;"><?= ($createdAtDates[$i][3]);?> час.</span>
+                        <span style="text-decoration: underline;"><?= ($createdAtDates[$i][4]);?> мин. назад</span> 
                     <?php elseif($createdAtDates[$i][4] !== '0'): ?>   
-                        <span><?= ($createdAtDates[$i][4]);?> мин. назад</span>
+                        <span style="text-decoration: underline;"><?= ($createdAtDates[$i][4]);?> мин. назад</span>
                     <?php else : ?>
-                        <span>только что</span>               
+                        <span style="text-decoration: underline;">только что</span>               
                     <?php endif; ?> 
                     <br>    
                     <?php if ($comments[$i]->getRedactedAt()): ?>
@@ -107,32 +108,30 @@
                         <br> 
                         <?php if($redactedAtDates[$i][0] !== '0'): ?>   
                             <?php if($redactedAtDates[$i][1] !== '0'): ?>
-                                <span><?= ($redactedAtDates[$i][0]);?> лет </span>
-                                <span><?= ($redactedAtDates[$i][1]);?> мес. назад</span>
+                                <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][0]);?> лет </span>
+                                <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][1]);?> мес. назад</span>
                             <?php else: ?>
-                                <span><?= ($redactedAtDates[$i][0]);?> лет назад</span>
+                                <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][0]);?> лет назад</span>
                             <?php endif; ?>    
                         <?php elseif($redactedAtDates[$i][1] !== '0'): ?>   
-                            <span><?= ($redactedAtDates[$i][1]);?> мес. назад</span>
+                            <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][1]);?> мес. назад</span>
                         <?php elseif($redactedAtDates[$i][2] !== '0'): ?>   
-                            <span><?= ($redactedAtDates[$i][2]);?> дней. назад</span>
+                            <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][2]);?> дней. назад</span>
                         <?php elseif($redactedAtDates[$i][3] !== '0'): ?>  
-                            <span><?= ($redactedAtDates[$i][3]);?> час.</span>
-                            <span><?= ($redactedAtDates[$i][4]);?> мин. назад</span> 
+                            <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][3]);?> час.</span>
+                            <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][4]);?> мин. назад</span> 
                         <?php elseif($redactedAtDates[$i][4] !== '0'): ?>   
-                            <span><?= ($redactedAtDates[$i][4]);?> мин. назад</span>
+                            <span style="text-decoration: underline;"><?= ($redactedAtDates[$i][4]);?> мин. назад</span>
                         <?php else : ?>
-                            <span>только что</span>               
+                            <span style="text-decoration: underline;">только что</span>               
                         <?php endif; ?>
+                    <br>   
                     <?php endif; ?>  
                     <br> 
                     <?php if (!empty($user)): ?>
                         <a href="/article/<?= $articles->getId(); ?>/answercomment/<?= $comments[$i]->getId(); ?>">Ответить</a>
                     <?php endif; ?>
                     <br>   
-                    <?php if (!empty($user) AND $user->isAdmin()): ?>
-                        <a href="/article/<?= $articles->getId(); ?>/editcomment/<?= $comments[$i]->getId(); ?>">Редактировать </a>|<a style="color: red;" href="/article/<?= $articles->getId(); ?>/comments/<?= $comments[$i]->getId()?>/delete"> Удалить</a> 
-                    <?php endif; ?>
                 </div>
             <?php endif; ?>
             <hr>

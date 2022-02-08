@@ -3,8 +3,8 @@
                     <div class="sidebarHeader">Меню</div>
                     <ul>
                         <li><a href="/">Главная страница</a></li>
-                        <li><a href="/adminpanel">Админка</a></li>     
                         <li><a href="/articles/add">Создать статью</a></li> 
+                        <li><a href="/adminpanel">Стрaница администрaтора</a></li>     
                         <li><a href="/users/manager/date/DESC">Менеджер пользователей</a></li>
                     </ul>
                 </td>

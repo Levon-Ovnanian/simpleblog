@@ -82,7 +82,8 @@
                 &nbsp;&nbsp;&nbsp;
                 <p><?= $article->getShortText(150); ?></p>
                 <p>Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a></p>
-                <a href="/articles/<?= $article->getId() ?>/edit">Редактировать</a>|<a href="/articles/<?= $article->getId()?>/delete" style="color: red;">Удалить</a> 
+                <a href="/articles/<?= $article->getId(); ?>/edit/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>">Редактировать</a>
+                | <a href="/articles/<?= $article->getId()?>/delete/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>" style="color: red;">Удалить</a> 
                 <hr>
                 <br>
             <?php endforeach; ?>

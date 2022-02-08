@@ -7,6 +7,7 @@ use MyProject\Exceptions\NotFoundException;
 use MyProject\Exceptions\UnauthorizedException;
 use MyProject\Models\Articles\Article;
 use MyProject\Models\Comments\Comment;
+use MyProject\Models\Users\User;
 use MyProject\Services\EmailSender;
 
 class CommentsController extends AbstractController
@@ -162,19 +163,27 @@ class CommentsController extends AbstractController
             throw new NotFoundException('Комментарий не найден');
         }
 
+        $userToRate = $comment->getUserId();
+        if ($userToRate === null) {
+            throw new NotFoundException('Автор статьи не найден');
+        }
+
         if (!empty($comment->getPlusBy())) {
 
             $isAlreadyRated = $comment->compareWithArray($this->user->getEmail(), $comment->getPlusBy());
             if ($isAlreadyRated === true) {
                 $comment->unRate($this->user->getEmail(), $comment->getPlusBy(), 'plus');
-                $comment->setPlus('--');  
+                $comment->setPlus('--');
+                $userToRate->SetRating('--');   
             } else { 
                 $comment->addMoreToTable('plus', $this->user);
                 $comment->setPlus('++');
+                $userToRate->SetRating('++');
             } 
         } else {
             $comment->addNewToTable('plus', $this->user);
             $comment->setPlus('++');
+            $userToRate->SetRating('++');
         } 
         
         header('Location: /articles/' . $article->getId() . '#' . $comment->getId(), true, 302);
@@ -204,19 +213,27 @@ class CommentsController extends AbstractController
             throw new NotFoundException('Комментарий не найден');
         }
 
+        $userToRate = $comment->getUserId();
+        if ($userToRate === null) {
+            throw new NotFoundException('Автор статьи не найден');
+        }
+
         if (!empty($comment->getMinusBy())) {
 
             $isAlreadyRated = $comment->compareWithArray($this->user->getEmail(), $comment->getMinusBy());
             if ($isAlreadyRated === true) {
                 $comment->unRate($this->user->getEmail(), $comment->getMinusBy(), 'minus');
-                $comment->setMinus('++');  
+                $comment->setMinus('++');
+                $userToRate->SetRating('++');   
             } else { 
                 $comment->addMoreToTable('minus', $this->user);
                 $comment->setMinus('--');
+                $userToRate->SetRating('--'); 
             } 
         } else {
             $comment->addNewToTable('minus', $this->user);
             $comment->setMinus('--');
+            $userToRate->SetRating('--'); 
         } 
        
         header('Location: /articles/' . $article->getId() . '#' . $comment->getId(), true, 302);

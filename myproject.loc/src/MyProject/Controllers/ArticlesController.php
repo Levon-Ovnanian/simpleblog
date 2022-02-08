@@ -57,39 +57,7 @@ class ArticlesController extends AbstractController
         );
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param integer $articleId
-     * @return void
-     */
-    public function edit(int $articleId): void
-    {
-        $article = Article::getById($articleId);
-        
-        try{         
-            if ($article === null) {
-                throw new NotFoundException('Статья не найдена');
-            }
-            if ($this->user === null) {
-                throw new UnauthorizedException();
-            }
-            if ($this->user->isAdmin() === false) {
-                throw new ForbiddenException('Редактировать статью может только администратор'); 
-            }
-            if (!empty($_POST)) {
-                $article->updateFromArray($_POST);
-                header('Location: /articles/' . $article->getId(), true, 302);
-                exit();
-            }
-        } catch (InvalidArgumentException $e) {
-            $this->view->renderHtml('articles/edit.php', ['error' => $e->getMessage(), 'article' => $article]);
-            return;
-        } 
-        
-        $this->view->renderHtml('articles/edit.php', ['article' => $article]);
-    }
-
+    
     /**
      * Undocumented function
      *
@@ -129,6 +97,55 @@ class ArticlesController extends AbstractController
         $this->view->renderHtml('articles/add.php');
     }
 
+   /**
+   * Undocumented function
+   *
+   * @param integer $articleId
+   * @param [type] $currentPage
+   * @param [type] $searchPanelName
+   * @param [type] $searchArgs
+   * @return void
+   */
+    public function edit(int $articleId, int $currentPage, string $searchPanelName, string $searchArgs): void
+    {
+        $article = Article::getById($articleId);
+
+        $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
+        if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            $searchArgAsArray[0] ='null';
+        }
+        
+        try{         
+            if ($article === null) {
+                throw new NotFoundException('Статья не найдена');
+            }
+            if ($this->user === null) {
+                throw new UnauthorizedException();
+            }
+            if ($this->user->isAdmin() === false) {
+                throw new ForbiddenException('Редактировать статью может только администратор'); 
+            }
+            if (!empty($_POST)) {
+                $article->updateFromArray($_POST);
+                header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
+                exit();
+            }
+        } catch (InvalidArgumentException $e) {
+            $this->view->renderHtml('articles/edit.php', ['error' => $e->getMessage(), 'article' => $article]);
+            return;
+        } 
+        
+        $this->view->renderHtml('articles/edit.php', 
+            [
+                'article' => $article,
+                'currentPage' => $currentPage, 
+                'orderBy' => $searchPanelName, 
+                'searchPanelArgs' => $searchArgs
+            ]
+                
+        );
+    }
+
     /**
      * Undocumented function
      *
@@ -136,9 +153,15 @@ class ArticlesController extends AbstractController
      * @return void
      */
    
-    public function delete(int $articleId): void 
+    public function delete(int $articleId, int $currentPage, string $searchPanelName, string $searchArgs): void 
     {
         $articles = Article::getById($articleId);
+        
+        $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
+        if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            $searchArgAsArray[0] ='null';
+        }
+
         if ($articles === null) {
             throw new NotFoundException();
         }
@@ -148,13 +171,8 @@ class ArticlesController extends AbstractController
 
         Comment::deleteWithArticle($articleId);
         $articles->delete();
-
-        if ($this->user->isAdmin()) {
-            header('Location: /adminpanel', true, 302);
-            exit();   // продумать переход
-        }
-        $articles = Article::findAll();
-        $this->view->renderHtml('main/main.php', ['articles' => $articles]);
+        header('Location: /adminpanel/' . $currentPage . '/' . $searchPanelName .  '/' . $searchArgAsArray[0] . '/' . $searchArgAsArray[1], true, 302);
+        exit();
     }
 
     /**
