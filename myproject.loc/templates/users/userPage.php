@@ -5,9 +5,13 @@
         <img src="http://176.36.123.219/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
         <h2><?= $author->getNickName(); ?></h2>
         <h3>
-            Cтатус пользователя: <span style="color: red;"><?= $user->getStatus(); ?></span><br>
-            Рейтинг пользователя: <?= $user->getRating(); ?><br>
-            Всего комментариев от пользователя: <?= $commentsCount->count;?>
+            Cтатус пользователя: <span style="color: red;"><?= $author->getStatus(); ?></span><br>
+            Рейтинг пользователя: <?= $author->getRating(); ?><br>
+            <?php if ($commentsCountAll !== null): ?>
+                Всего комментариев от пользователя: <?= $commentsCountAll[0][0]->count;?>
+            <?php else: ?>
+                Всего комментариев от пользователя: 0
+            <?php endif; ?>    
             <br>
             <br>
             Всего статей: <?= $articlesCount; ?><br>
@@ -44,9 +48,13 @@
     <img src="http://176.36.123.219/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
     <h2><?= $author->getNickName(); ?></h2>
     <h3>
-        Cтатус пользователя: <span style="color: red;"><?= $user->getStatus(); ?></span><br>
-        Рейтинг пользователя: <?= $user->getRating(); ?><br>
-        Всего комментариев от пользователя: <?= $commentsCount->count;?>
+        Cтатус пользователя: <span style="color: red;"><?= $author->getStatus(); ?></span><br>
+        Рейтинг пользователя: <?= $author->getRating(); ?><br>
+        <?php if ($commentsCountAll !== null): ?>
+            Всего комментариев от пользователя: <?= $commentsCountAll[0][0]->count;?>
+        <?php else: ?>
+            Всего комментариев от пользователя: 0
+        <?php endif; ?>   
     </h3>
     <?php if ($user AND $user->getId() !== $author->getId()): ?>
         <?php if ($follower): ?>
@@ -97,8 +105,8 @@
     <br>
     <?php for ($i = 0; $i != count($articles); $i++): ?>
         <h2><a href="/articles/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getName(); ?></a> &nbsp;&nbsp;&nbsp;
-            <?php if (!empty($comments[$i])):?>
-                <span style="font-size: medium;"><?= $comments[$i][0]->getCount();?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+            <?php if (!empty($commentsCountForArticles[$i])):?>
+                <span style="font-size: medium;"><?= $commentsCountForArticles[$i][0]->getCount();?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
             <?php else: ?>
                 <span style="font-size: medium;"><?php echo('0');?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
             <?php endif; ?>        

@@ -775,7 +775,7 @@ abstract class ActiveRecordEntity implements \JsonSerializable
 
         foreach ($values as $value) {
             $sql = $db->query('SELECT COUNT(*) AS count FROM ' . static::getTableName() . ' WHERE ' . $columnName . ' = :value;',
-                [':value' => $value->id],
+                [':value' => $value->getId()],
                 static::class
             );  
             $result[] = $sql;     

@@ -82,7 +82,11 @@
         Ваш статус: <span style="color: red;"><?= $user->getStatus(); ?></span><br>
         Ваш рейтинг: <?= $user->getRating(); ?><br>
         Всего статей: <?= $articlesCount[0][0]->count; ?><br>
-        Всего комментариев <?= $commentsCount[0][0]->count; ?>
+        <?php if ($commentsCount !== null): ?>
+            Всего комментариев: <?= $commentsCount[0][0]->count;?>
+        <?php else: ?>
+            Всего комментариев: 0
+        <?php endif; ?>   
     </strong>
     <br>
     <hr>

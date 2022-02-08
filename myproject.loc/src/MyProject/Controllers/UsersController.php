@@ -165,7 +165,8 @@ class UsersController extends AbstractController
                     $isAlreadyFollowed = $follower->compareWithArray($articles[0]->getAuthorId()->getEmail(), $follower->getAuthorEmail());
                 }
             }
-            $commentsCount = Comment::getItemsCountByColumn($articles, 'article_id');
+            $commentsCountForArticles = Comment::getItemsCountByColumn($articles, 'article_id');
+            $getCommentsCount = Comment::getItemsCountByColumn([$author], 'user_id');
         
         } catch (NotFoundException $e) {
             $this->view->renderHtml('users/userPage.php', 
@@ -175,7 +176,8 @@ class UsersController extends AbstractController
                     'articles' => $articles,
                     'error' => $e->getMessage(),
                     'isAlreadyFollowed' => $isAlreadyFollowed,
-                    'commentsCount' => $commentsCount
+                    'commentsCountForArticles' => $commentsCountForArticles,
+                    'commentsCountAll' => $getCommentsCount
                 ],
                 404
             );     
@@ -187,7 +189,8 @@ class UsersController extends AbstractController
                     'author' => $author,
                     'follower' => $follower,
                     'articles' => $articles,
-                    'commentsCount' => $commentsCount,
+                    'commentsCountForArticles' => $commentsCountForArticles,
+                    'commentsCountAll' => $getCommentsCount,
                     'isAlreadyFollowed' => $isAlreadyFollowed,
                     'articlesCount' => $articlesCount,
                     'orderBy' => $orderBy
@@ -523,8 +526,8 @@ class UsersController extends AbstractController
             }
 
             $comments = Comment::getCommentsArrayForAdminPanel($articles);
-            $getCommetsCount = Comment::getPagesCount(1);
-            $commentsCount = $getCommetsCount[1];
+            $getCommentsCount = Comment::getPagesCount(1);
+            $commentsCount = $getCommentsCount[1];
 
         } catch (NotFoundException $e) {
             $this->view->renderHtml('users/adminPanel.php', ['error' => $e->getMessage(), 'user' => $this->user], 404);
@@ -598,7 +601,6 @@ class UsersController extends AbstractController
                 'followers' => $followersData,
                 'articlesCount' => $articlesCount,
                 'commentsCount' => $commentsCount
-
             ]
         );
     }
