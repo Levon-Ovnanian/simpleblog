@@ -1,0 +1,18 @@
+{
+    "name": "ovnanian/myproject",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Levon Ovnanian",
+            "email": "levon.ovnanian@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MyProject\\": "src/MyProject/"
+        }
+    },  "require": {
+        "erusev/parsedown": "^1.7"
+    }
+}

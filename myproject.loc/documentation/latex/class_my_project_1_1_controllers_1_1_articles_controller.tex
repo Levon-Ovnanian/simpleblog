@@ -1,0 +1,147 @@
+\hypertarget{class_my_project_1_1_controllers_1_1_articles_controller}{}\doxysection{Articles\+Controller Class Reference}
+\label{class_my_project_1_1_controllers_1_1_articles_controller}\index{ArticlesController@{ArticlesController}}
+Inheritance diagram for Articles\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_my_project_1_1_controllers_1_1_articles_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_ad2a7b73b3a7e24b9fb77cfb5984ed400}{view}} (string \$article\+Id)
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}{edit}} (int \$article\+Id)
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a837ba24a1c3095ae67613238d866f79a}{add}} ()
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}{delete}} (int \$article\+Id)
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}{plus\+Article}} (int \$artice\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}{minus\+Article}} (int \$artice\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+class extends \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_abstract_controller}{Abstract\+Controller}}; class controls actions for articles and partially for comments; it has its own string property \$article\+Id and gets another two as extendable class\+: protected \$view -\/ association with an object of class View, protected \$user -\/ association with an object of class Users\+Auth\+Service; 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a837ba24a1c3095ae67613238d866f79a}\label{class_my_project_1_1_controllers_1_1_articles_controller_a837ba24a1c3095ae67613238d866f79a}} 
+\index{ArticlesController@{ArticlesController}!add@{add}}
+\index{add@{add}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily add (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Undocumented function
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}\label{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}} 
+\index{ArticlesController@{ArticlesController}!delete@{delete}}
+\index{delete@{delete}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id }\end{DoxyParamCaption})}
+
+Undocumented function
+
+
+\begin{DoxyParams}[1]{Parameters}
+integer & {\em \$article\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}\label{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}} 
+\index{ArticlesController@{ArticlesController}!edit@{edit}}
+\index{edit@{edit}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{edit()}{edit()}}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id }\end{DoxyParamCaption})}
+
+Undocumented function
+
+
+\begin{DoxyParams}[1]{Parameters}
+integer & {\em \$article\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}\label{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}} 
+\index{ArticlesController@{ArticlesController}!minusArticle@{minusArticle}}
+\index{minusArticle@{minusArticle}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{minusArticle()}{minusArticle()}}
+{\footnotesize\ttfamily minus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$artice\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
+
+Undocumented function
+
+
+\begin{DoxyParams}[1]{Parameters}
+integer & {\em \$artice\+Id} & \\
+\hline
+integer & {\em \$user\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}\label{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}} 
+\index{ArticlesController@{ArticlesController}!plusArticle@{plusArticle}}
+\index{plusArticle@{plusArticle}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{plusArticle()}{plusArticle()}}
+{\footnotesize\ttfamily plus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$artice\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
+
+Undocumented function
+
+
+\begin{DoxyParams}[1]{Parameters}
+integer & {\em \$artice\+Id} & \\
+\hline
+integer & {\em \$user\+Id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_ad2a7b73b3a7e24b9fb77cfb5984ed400}\label{class_my_project_1_1_controllers_1_1_articles_controller_ad2a7b73b3a7e24b9fb77cfb5984ed400}} 
+\index{ArticlesController@{ArticlesController}!view@{view}}
+\index{view@{view}!ArticlesController@{ArticlesController}}
+\doxysubsubsection{\texorpdfstring{view()}{view()}}
+{\footnotesize\ttfamily view (\begin{DoxyParamCaption}\item[{string}]{\$article\+Id }\end{DoxyParamCaption})}
+
+function initiates and fills variables to pass them for rendering to method render\+Html() of class View;
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$article\+Id} & -\/ article id for viewing in template; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+gets an object of class Article formed by method get\+By\+Id();
+
+if non of article by given id throw exception;
+
+gets an array of objects of comments sorted by comments key;
+
+queries data about users subscriptions;
+
+checking if user subscribed on author;
+
+sets timezone in accordance with it ini .ini settings;
+
+gets difference time between creation of comment and current time;
+
+gets difference time between redaction of comment and current time; ~\newline
+
+
+passes all collected data for further rendering;
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Articles\+Controller.\+php\end{DoxyCompactItemize}

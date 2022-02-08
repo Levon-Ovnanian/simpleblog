@@ -1,0 +1,67 @@
+\hypertarget{class_my_project_1_1_controllers_1_1_abstract_controller}{}\doxysection{Abstract\+Controller Class Reference}
+\label{class_my_project_1_1_controllers_1_1_abstract_controller}\index{AbstractController@{AbstractController}}
+Inheritance diagram for Abstract\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.352657cm]{class_my_project_1_1_controllers_1_1_abstract_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_abstract_controller_a095c5d389db211932136b53f25f39685}{\+\_\+\+\_\+construct}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_abstract_controller_a5c97f82c5dc76a0105c8dd9419f6b1c1}{get\+Input\+Data}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_abstract_controller_acccf2eac8663e0cebe8101e90fbab089}\label{class_my_project_1_1_controllers_1_1_abstract_controller_acccf2eac8663e0cebe8101e90fbab089}} 
+{\bfseries \$view}
+\item 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_abstract_controller_a598ca4e71b15a1313ec95f0df1027ca5}\label{class_my_project_1_1_controllers_1_1_abstract_controller_a598ca4e71b15a1313ec95f0df1027ca5}} 
+{\bfseries \$user}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+abstract class takes responsibility for getting current session user data, creates new object of class View and gives to it main path to html templates, passes to method set\+Var() of class View current session user data for further rendering; class has two properties\+: protected \$view -\/ association with an object of class View, protected \$user -\/ association with an object of class Users\+Auth\+Service; ~\newline
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_abstract_controller_a095c5d389db211932136b53f25f39685}\label{class_my_project_1_1_controllers_1_1_abstract_controller_a095c5d389db211932136b53f25f39685}} 
+\index{AbstractController@{AbstractController}!\_\_construct@{\_\_construct}}
+\index{\_\_construct@{\_\_construct}!AbstractController@{AbstractController}}
+\doxysubsubsection{\texorpdfstring{\_\_construct()}{\_\_construct()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+main constructor; return current session user data;
+
+creates new object of class View, passes to it main path to html templates;
+
+passes current session user data for further rendering;
+
+Reimplemented in \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_followers_controller_a095c5d389db211932136b53f25f39685}{Followers\+Controller}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_abstract_controller_a5c97f82c5dc76a0105c8dd9419f6b1c1}\label{class_my_project_1_1_controllers_1_1_abstract_controller_a5c97f82c5dc76a0105c8dd9419f6b1c1}} 
+\index{AbstractController@{AbstractController}!getInputData@{getInputData}}
+\index{getInputData@{getInputData}!AbstractController@{AbstractController}}
+\doxysubsubsection{\texorpdfstring{getInputData()}{getInputData()}}
+{\footnotesize\ttfamily get\+Input\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Undocumented function
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Abstract\+Controller.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,31 @@
+<?php
+return [
+
+    '~^$~' => [\MyProject\Controllers\MainController::class, 'main'],
+    '~^(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\MainController::class, 'page'],
+    '~^articles/(\d+)$~' => [\MyProject\Controllers\ArticlesController::class, 'view'],
+    '~^articles/(\d+)/edit$~' => [\MyProject\Controllers\ArticlesController::class, 'edit'],
+    '~^articles/add$~' => [\MyProject\Controllers\ArticlesController::class, 'add'],
+    '~^articles/(\d+)/followauthor/((.+)/(\d+))$~' => [\MyProject\Controllers\FollowersController::class, 'followAuthor'],
+    '~^articles/(\d+)/unfollowauthor/((.+)/(\d+))$~' => [\MyProject\Controllers\FollowersController::class, 'unFollowAuthor'],
+    '~^articles/(\d+)/delete$~' => [\MyProject\Controllers\ArticlesController::class, 'delete'],
+    '~^articles/(\d+)/comments$~' => [\MyProject\Controllers\CommentsController::class, 'createComment'],
+    '~^article/(\d+)/answercomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'answerComment'],
+    '~^article/(\d+)/pluscomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'plusComment'],
+    '~^article/(\d+)/minuscomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'minusComment'],
+    '~^articles/(\d+)/plusarticle/(\d+)/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\ArticlesController::class, 'plusArticle'],
+    '~^articles/(\d+)/minusarticle/(\d+)/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\ArticlesController::class, 'minusArticle'],
+    '~^article/(\d+)/editcomment/(\d+)$~' => [\MyProject\Controllers\CommentsController::class, 'editComment'],
+    '~^users/register$~' => [\MyProject\Controllers\UsersController::class, 'signUp'],
+    '~^users/(\d+)/activate/(.+)$~' => [\MyProject\Controllers\UsersController::class, 'activate'],
+    '~^users/login$~' => [\MyProject\Controllers\UsersController::class, 'login'],
+    '~^users/logout$~' => [\MyProject\Controllers\UsersController::class, 'logout'],
+    '~^users/manager/(.+)$~' => [\MyProject\Controllers\UsersController::class, 'usersManager'],
+    '~^users/edit/personal/(\d+)$~' => [\MyProject\Controllers\UsersController::class, 'usersManagerPersonalPage'],
+    '~^user/(\d+)$~' => [\MyProject\Controllers\UsersController::class, 'userPage'],
+    '~^users/cabinet/personalpage$~' => [\MyProject\Controllers\UsersController::class, 'userPersonalCabinet'],
+    '~^article/(\d+)/comments/(\d+)/delete$~' => [\MyProject\Controllers\CommentsController::class, 'deleteComment'],
+    '~^adminpanel$~' => [\MyProject\Controllers\UsersController::class, 'adminPanelMain'],
+    '~^adminpanel/(\d+)/(.+)/(.+/.+)$~' => [\MyProject\Controllers\UsersController::class, 'adminPanelPagesViewer'],
+];
+
