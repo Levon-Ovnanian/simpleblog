@@ -568,7 +568,6 @@ class UsersController extends AbstractController
             }
 
             $comments = Comment::getCommentsArrayForAdminPanel($articles);
-        
 
         } catch (NotFoundException $e) {
             $this->view->renderHtml('users/adminPanel.php', ['error' => $e->getMessage(), 'user' => $this->user], 404);
