@@ -11,15 +11,15 @@ Inheritance diagram for Articles\+Controller\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_ad2a7b73b3a7e24b9fb77cfb5984ed400}{view}} (string \$article\+Id)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}{edit}} (int \$article\+Id)
-\item 
 \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a837ba24a1c3095ae67613238d866f79a}{add}} ()
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}{delete}} (int \$article\+Id)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_abcb19e20220da95647997e2c0dd5f8cb}{edit}} (int \$article\+Id, int \$current\+Page, string \$search\+Panel\+Name, string \$search\+Args)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}{plus\+Article}} (int \$artice\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a6ac06df2b7f3effef2688b68df78386b}{delete}} (int \$article\+Id, int \$current\+Page, string \$search\+Panel\+Name, string \$search\+Args)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}{minus\+Article}} (int \$artice\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a7651147fd9bb184bb244f3e334d7669b}{plus\+Article}} (int \$article\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
+\item 
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_articles_controller_a8824f129bacfac24cd90881ac2d46d24}{minus\+Article}} (int \$article\+Id, int \$user\+Id, int \$page\+Num, string \$order\+By, string \$search\+Args)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -39,11 +39,11 @@ Undocumented function
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}\label{class_my_project_1_1_controllers_1_1_articles_controller_a381ace743654c1a094cfbc5b138b53ba}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a6ac06df2b7f3effef2688b68df78386b}\label{class_my_project_1_1_controllers_1_1_articles_controller_a6ac06df2b7f3effef2688b68df78386b}} 
 \index{ArticlesController@{ArticlesController}!delete@{delete}}
 \index{delete@{delete}!ArticlesController@{ArticlesController}}
 \doxysubsubsection{\texorpdfstring{delete()}{delete()}}
-{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$current\+Page,  }\item[{string}]{\$search\+Panel\+Name,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
@@ -55,11 +55,11 @@ integer & {\em \$article\+Id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}\label{class_my_project_1_1_controllers_1_1_articles_controller_a46a2e6b0df0698031817447e50bab258}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_abcb19e20220da95647997e2c0dd5f8cb}\label{class_my_project_1_1_controllers_1_1_articles_controller_abcb19e20220da95647997e2c0dd5f8cb}} 
 \index{ArticlesController@{ArticlesController}!edit@{edit}}
 \index{edit@{edit}!ArticlesController@{ArticlesController}}
 \doxysubsubsection{\texorpdfstring{edit()}{edit()}}
-{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily edit (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$current\+Page,  }\item[{string}]{\$search\+Panel\+Name,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
@@ -67,21 +67,27 @@ Undocumented function
 \begin{DoxyParams}[1]{Parameters}
 integer & {\em \$article\+Id} & \\
 \hline
+ & {\em \mbox{[}type\mbox{]}} & \$current\+Page \\
+\hline
+ & {\em \mbox{[}type\mbox{]}} & \$search\+Panel\+Name \\
+\hline
+ & {\em \mbox{[}type\mbox{]}} & \$search\+Args \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}\label{class_my_project_1_1_controllers_1_1_articles_controller_a414c0e964248a0f8f3fab21756164189}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a8824f129bacfac24cd90881ac2d46d24}\label{class_my_project_1_1_controllers_1_1_articles_controller_a8824f129bacfac24cd90881ac2d46d24}} 
 \index{ArticlesController@{ArticlesController}!minusArticle@{minusArticle}}
 \index{minusArticle@{minusArticle}!ArticlesController@{ArticlesController}}
 \doxysubsubsection{\texorpdfstring{minusArticle()}{minusArticle()}}
-{\footnotesize\ttfamily minus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$artice\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily minus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
 
 \begin{DoxyParams}[1]{Parameters}
-integer & {\em \$artice\+Id} & \\
+integer & {\em \$article\+Id} & \\
 \hline
 integer & {\em \$user\+Id} & \\
 \hline
@@ -89,17 +95,17 @@ integer & {\em \$user\+Id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}\label{class_my_project_1_1_controllers_1_1_articles_controller_aeff07e84b5ae0e57e63d93cee8a0ac72}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_articles_controller_a7651147fd9bb184bb244f3e334d7669b}\label{class_my_project_1_1_controllers_1_1_articles_controller_a7651147fd9bb184bb244f3e334d7669b}} 
 \index{ArticlesController@{ArticlesController}!plusArticle@{plusArticle}}
 \index{plusArticle@{plusArticle}!ArticlesController@{ArticlesController}}
 \doxysubsubsection{\texorpdfstring{plusArticle()}{plusArticle()}}
-{\footnotesize\ttfamily plus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$artice\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily plus\+Article (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$user\+Id,  }\item[{int}]{\$page\+Num,  }\item[{string}]{\$order\+By,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
 
 \begin{DoxyParams}[1]{Parameters}
-integer & {\em \$artice\+Id} & \\
+integer & {\em \$article\+Id} & \\
 \hline
 integer & {\em \$user\+Id} & \\
 \hline
@@ -144,4 +150,4 @@ passes all collected data for further rendering;
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Articles\+Controller.\+php\end{DoxyCompactItemize}
+src/\+My\+Project/\+Controllers/Articles\+Controller.\+php\end{DoxyCompactItemize}

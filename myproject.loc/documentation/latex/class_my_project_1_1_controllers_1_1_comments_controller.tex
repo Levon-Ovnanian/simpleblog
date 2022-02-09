@@ -11,15 +11,15 @@ Inheritance diagram for Comments\+Controller\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_ac3b36a99bc12b5f6ae71524673fd46b4}{create\+Comment}} (int \$article\+Id)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_aa771c2de3474f74c1c037211b3805418}{edit\+Comment}} (int \$article\+Id, int \$comment\+Id)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_a0437460814bf09085a29b58e08105e8a}{edit\+Comment}} (int \$article\+Id, int \$comment\+Id, int \$current\+Page, string \$search\+Panel\+Name, string \$search\+Args)
 \item 
 \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_a5e4d8ab3d83ed4f077a35b80cab4a8da}{answer\+Comment}} (int \$article\+Id, int \$comment\+Id)
 \item 
 \mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_a954bff93bc2f679cfecfb2d8a4add224}{plus\+Comment}} (int \$article\+Id, int \$comment\+Id)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_aa856e939990a57bc67b04db5820f9674}{minus\+Comment}} (int \$artice\+Id, int \$comment\+Id)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_ae056a96e5e286361ec75b32302e97140}{minus\+Comment}} (int \$article\+Id, int \$comment\+Id)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_a7db5a45f70df28a9d1f655a6ccde3df2}{delete\+Comment}} (int \$article\+Id, int \$comment\+Id)
+\mbox{\hyperlink{class_my_project_1_1_controllers_1_1_comments_controller_ab8afdb9df55fa45a983adf53f0c60840}{delete\+Comment}} (int \$comment\+Id, int \$current\+Page, string \$search\+Panel\+Name, string \$search\+Args)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -59,11 +59,11 @@ integer & {\em \$article\+Id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_a7db5a45f70df28a9d1f655a6ccde3df2}\label{class_my_project_1_1_controllers_1_1_comments_controller_a7db5a45f70df28a9d1f655a6ccde3df2}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_ab8afdb9df55fa45a983adf53f0c60840}\label{class_my_project_1_1_controllers_1_1_comments_controller_ab8afdb9df55fa45a983adf53f0c60840}} 
 \index{CommentsController@{CommentsController}!deleteComment@{deleteComment}}
 \index{deleteComment@{deleteComment}!CommentsController@{CommentsController}}
 \doxysubsubsection{\texorpdfstring{deleteComment()}{deleteComment()}}
-{\footnotesize\ttfamily delete\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$comment\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily delete\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$comment\+Id,  }\item[{int}]{\$current\+Page,  }\item[{string}]{\$search\+Panel\+Name,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
@@ -75,11 +75,11 @@ integer & {\em \$comment\+Id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_aa771c2de3474f74c1c037211b3805418}\label{class_my_project_1_1_controllers_1_1_comments_controller_aa771c2de3474f74c1c037211b3805418}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_a0437460814bf09085a29b58e08105e8a}\label{class_my_project_1_1_controllers_1_1_comments_controller_a0437460814bf09085a29b58e08105e8a}} 
 \index{CommentsController@{CommentsController}!editComment@{editComment}}
 \index{editComment@{editComment}!CommentsController@{CommentsController}}
 \doxysubsubsection{\texorpdfstring{editComment()}{editComment()}}
-{\footnotesize\ttfamily edit\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$comment\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily edit\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$comment\+Id,  }\item[{int}]{\$current\+Page,  }\item[{string}]{\$search\+Panel\+Name,  }\item[{string}]{\$search\+Args }\end{DoxyParamCaption})}
 
 Undocumented function
 
@@ -91,17 +91,17 @@ integer & {\em \$comment\+Id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_aa856e939990a57bc67b04db5820f9674}\label{class_my_project_1_1_controllers_1_1_comments_controller_aa856e939990a57bc67b04db5820f9674}} 
+\mbox{\Hypertarget{class_my_project_1_1_controllers_1_1_comments_controller_ae056a96e5e286361ec75b32302e97140}\label{class_my_project_1_1_controllers_1_1_comments_controller_ae056a96e5e286361ec75b32302e97140}} 
 \index{CommentsController@{CommentsController}!minusComment@{minusComment}}
 \index{minusComment@{minusComment}!CommentsController@{CommentsController}}
 \doxysubsubsection{\texorpdfstring{minusComment()}{minusComment()}}
-{\footnotesize\ttfamily minus\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$artice\+Id,  }\item[{int}]{\$comment\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily minus\+Comment (\begin{DoxyParamCaption}\item[{int}]{\$article\+Id,  }\item[{int}]{\$comment\+Id }\end{DoxyParamCaption})}
 
 Undocumented function
 
 
 \begin{DoxyParams}[1]{Parameters}
-integer & {\em \$artice\+Id} & \\
+integer & {\em \$article\+Id} & \\
 \hline
 integer & {\em \$comment\+Id} & \\
 \hline
@@ -131,4 +131,4 @@ void
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-Comments\+Controller.\+php\end{DoxyCompactItemize}
+src/\+My\+Project/\+Controllers/Comments\+Controller.\+php\end{DoxyCompactItemize}

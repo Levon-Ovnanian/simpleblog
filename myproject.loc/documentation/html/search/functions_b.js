@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['unfollowauthor_0',['unFollowAuthor',['../class_my_project_1_1_controllers_1_1_followers_controller.html#a2ff7edbded62cb42c9c60596246ae9b5',1,'MyProject::Controllers::FollowersController']]],
-  ['userpage_1',['userPage',['../class_my_project_1_1_controllers_1_1_users_controller.html#aa2a712792dded5e1fa8a57e85ea68ace',1,'MyProject::Controllers::UsersController']]],
-  ['userpersonalcabinet_2',['userPersonalCabinet',['../class_my_project_1_1_controllers_1_1_users_controller.html#acd9cd85010751d923362895de7aca0c9',1,'MyProject::Controllers::UsersController']]],
-  ['usersmanager_3',['usersManager',['../class_my_project_1_1_controllers_1_1_users_controller.html#ae37d5ec8d4973fe22f0c15df3be79eaa',1,'MyProject::Controllers::UsersController']]],
-  ['usersmanagerpersonalpage_4',['usersManagerPersonalPage',['../class_my_project_1_1_controllers_1_1_users_controller.html#aca7ea05b6ab1c54e1f5600704b7bc9a1',1,'MyProject::Controllers::UsersController']]]
+  ['main_0',['main',['../class_my_project_1_1_controllers_1_1_main_controller.html#a51af30a60f9f02777c6396b8247e356f',1,'MyProject::Controllers::MainController']]],
+  ['minusarticle_1',['minusArticle',['../class_my_project_1_1_controllers_1_1_articles_controller.html#a8824f129bacfac24cd90881ac2d46d24',1,'MyProject::Controllers::ArticlesController']]],
+  ['minuscomment_2',['minusComment',['../class_my_project_1_1_controllers_1_1_comments_controller.html#ae056a96e5e286361ec75b32302e97140',1,'MyProject::Controllers::CommentsController']]],
+  ['multiplepostagetofollowers_3',['multiplePostageToFollowers',['../class_my_project_1_1_services_1_1_email_sender.html#a627891d2b449f4e8d06a77e4ec2d06b5',1,'MyProject::Services::EmailSender']]]
 ];

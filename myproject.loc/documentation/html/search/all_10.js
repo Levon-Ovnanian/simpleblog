@@ -17,14 +17,13 @@ var searchData=
   ['setname_14',['setName',['../class_my_project_1_1_models_1_1_articles_1_1_article.html#a392752b62c4f6aacea5c269690921ef3',1,'MyProject::Models::Articles::Article']]],
   ['setplus_15',['setPlus',['../class_my_project_1_1_models_1_1_articles_1_1_article.html#af8bb008aa86d6f56ea8ece356b8e33ee',1,'MyProject\Models\Articles\Article\setPlus()'],['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#af8bb008aa86d6f56ea8ece356b8e33ee',1,'MyProject\Models\Comments\Comment\setPlus()'],['../class_my_project_1_1_models_1_1_users_1_1_user.html#af8bb008aa86d6f56ea8ece356b8e33ee',1,'MyProject\Models\Users\User\setPlus()']]],
   ['setpsr4_16',['setPsr4',['../class_composer_1_1_autoload_1_1_class_loader.html#a7f92172519c08357430e7da877a88995',1,'Composer::Autoload::ClassLoader']]],
-  ['setrate_17',['setRate',['../class_my_project_1_1_models_1_1_active_record_entity.html#a941f333e8e75ea1e98e3d1b8c6995048',1,'MyProject::Models::ActiveRecordEntity']]],
+  ['setrate_17',['setRate',['../class_my_project_1_1_models_1_1_active_record_entity.html#a651237ed96f61cffacbef1ba046d75c7',1,'MyProject::Models::ActiveRecordEntity']]],
   ['setredactedat_18',['setRedactedAt',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#a75133ad98cfd70577f7de0fe82ec2854',1,'MyProject::Models::Comments::Comment']]],
   ['setsourcecommentid_19',['setSourceCommentId',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#a343f119c877aca36463c63134d941bd9',1,'MyProject::Models::Comments::Comment']]],
   ['settext_20',['setText',['../class_my_project_1_1_models_1_1_articles_1_1_article.html#af8661e481acfb9acaeac405a2d648cf7',1,'MyProject\Models\Articles\Article\setText()'],['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#af8661e481acfb9acaeac405a2d648cf7',1,'MyProject\Models\Comments\Comment\setText()']]],
-  ['settimezone_21',['setTimeZone',['../class_my_project_1_1_services_1_1_date_counter.html#a91bc76241b9c96d001ff3fd7919fc621',1,'MyProject::Services::DateCounter']]],
-  ['setuseincludepath_22',['setUseIncludePath',['../class_composer_1_1_autoload_1_1_class_loader.html#aed3e96782322ebc7352f1e62de1cc38c',1,'Composer::Autoload::ClassLoader']]],
-  ['setuserid_23',['setUserId',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#a0efaadd0a140fa8c48fdff6bc1f21709',1,'MyProject::Models::Comments::Comment']]],
-  ['setvar_24',['setVar',['../class_my_project_1_1_view_1_1_view.html#a443338864ecdaffc9147196c2941bc60',1,'MyProject::View::View']]],
-  ['showorderedbycommentkey_25',['showOrderedByCommentKey',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#af3f241d27df0163fb95da49a2628f55a',1,'MyProject::Models::Comments::Comment']]],
-  ['signup_26',['signUp',['../class_my_project_1_1_controllers_1_1_users_controller.html#a023e7ada4f2a7161736dcb9c4b3c0002',1,'MyProject\Controllers\UsersController\signUp()'],['../class_my_project_1_1_models_1_1_users_1_1_user.html#a2823ba3e7f0a5e14c37552c6aebb8391',1,'MyProject\Models\Users\User\signUp()']]]
+  ['setuseincludepath_21',['setUseIncludePath',['../class_composer_1_1_autoload_1_1_class_loader.html#aed3e96782322ebc7352f1e62de1cc38c',1,'Composer::Autoload::ClassLoader']]],
+  ['setuserid_22',['setUserId',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#a0efaadd0a140fa8c48fdff6bc1f21709',1,'MyProject::Models::Comments::Comment']]],
+  ['setvar_23',['setVar',['../class_my_project_1_1_view_1_1_view.html#a443338864ecdaffc9147196c2941bc60',1,'MyProject::View::View']]],
+  ['showorderedbycommentkey_24',['showOrderedByCommentKey',['../class_my_project_1_1_models_1_1_comments_1_1_comment.html#af3f241d27df0163fb95da49a2628f55a',1,'MyProject::Models::Comments::Comment']]],
+  ['signup_25',['signUp',['../class_my_project_1_1_controllers_1_1_users_controller.html#a023e7ada4f2a7161736dcb9c4b3c0002',1,'MyProject\Controllers\UsersController\signUp()'],['../class_my_project_1_1_models_1_1_users_1_1_user.html#a2823ba3e7f0a5e14c37552c6aebb8391',1,'MyProject\Models\Users\User\signUp()']]]
 ];

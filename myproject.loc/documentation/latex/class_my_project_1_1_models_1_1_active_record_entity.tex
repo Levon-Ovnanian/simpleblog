@@ -25,19 +25,15 @@ Inheritance diagram for Active\+Record\+Entity\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a6dd92173836562af5e1cf072a7400fd8}{delete\+By\+Column}} (string \$column\+Name, \$value)
 \item 
-\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a941f333e8e75ea1e98e3d1b8c6995048}{set\+Rate}} (string \$column, \$rate)
+\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a651237ed96f61cffacbef1ba046d75c7}{set\+Rate}} (string \$column, \$updates)
 \item 
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a988627114c5702ca483c482114f78d69}\label{class_my_project_1_1_models_1_1_active_record_entity_a988627114c5702ca483c482114f78d69}} 
-{\bfseries compare\+With\+Array} (string \$sample, string \$match)
+\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a988627114c5702ca483c482114f78d69}{compare\+With\+Array}} (string \$sample, string \$match)
 \item 
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a23e425bf9297ef5bd31a921135a77303}\label{class_my_project_1_1_models_1_1_active_record_entity_a23e425bf9297ef5bd31a921135a77303}} 
-{\bfseries un\+Rate} (string \$folower\+Email, string \$pull, string \$property)
+\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a59fb4c0cfba7322983ef72e4b0622460}{un\+Rate}} (string \$follower\+Email, string \$pull, string \$property)
 \item 
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a32c76240707a258c605d28ff54355a52}\label{class_my_project_1_1_models_1_1_active_record_entity_a32c76240707a258c605d28ff54355a52}} 
-{\bfseries add\+More\+To\+Table} (string \$property, \mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}} \$user)
+\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a32c76240707a258c605d28ff54355a52}{add\+More\+To\+Table}} (string \$property, \mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}} \$user)
 \item 
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ad2d73c18ee14f114c1b96e5ae5f2f499}\label{class_my_project_1_1_models_1_1_active_record_entity_ad2d73c18ee14f114c1b96e5ae5f2f499}} 
-{\bfseries add\+New\+To\+Table} (string \$property, \mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}} \$user)
+\mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_ad2d73c18ee14f114c1b96e5ae5f2f499}{add\+New\+To\+Table}} (string \$property, \mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}} \$user)
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -65,6 +61,8 @@ static \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_ac2
 static \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_aa39396957dd38deb9f4d65768424e35d}{get\+Pages\+Count\+With\+Search\+Args}} (int \$items\+Per\+Page, array \$get\+Values, string \$optional=\textquotesingle{}\textquotesingle{})
 \item 
 static \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_ae4de5bcdb0c3c5f156dd7c51d0930693}{get\+Pages\+With\+Comments\+Count}} (int \$items\+Per\+Page, array \$get\+Values=\mbox{[}$\,$\mbox{]})
+\item 
+static \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a4eedf21f277a82b475282b56422a63ca}{get\+Comments\+Count}} (int \$items\+Per\+Page, array \$get\+Values=\mbox{[}$\,$\mbox{]})
 \item 
 static \mbox{\hyperlink{class_my_project_1_1_models_1_1_active_record_entity_a57e9d766c9d69046482686772b25ae93}{get\+Articles\+With\+Comments\+For\+User}} (int \$id, string \$order\+By)
 \item 
@@ -133,35 +131,89 @@ string & {\em \$name} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a32c76240707a258c605d28ff54355a52}\label{class_my_project_1_1_models_1_1_active_record_entity_a32c76240707a258c605d28ff54355a52}} 
+\index{ActiveRecordEntity@{ActiveRecordEntity}!addMoreToTable@{addMoreToTable}}
+\index{addMoreToTable@{addMoreToTable}!ActiveRecordEntity@{ActiveRecordEntity}}
+\doxysubsubsection{\texorpdfstring{addMoreToTable()}{addMoreToTable()}}
+{\footnotesize\ttfamily add\+More\+To\+Table (\begin{DoxyParamCaption}\item[{string}]{\$property,  }\item[{\mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}}}]{\$user }\end{DoxyParamCaption})}
+
+adds current session user\`{}s email to the list in property \$plus\+By/\$minus\+By; ~\newline
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$property} & ///string indicates which property is for further update; \\
+\hline
+User & {\em \$user} & ///current session user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ad2d73c18ee14f114c1b96e5ae5f2f499}\label{class_my_project_1_1_models_1_1_active_record_entity_ad2d73c18ee14f114c1b96e5ae5f2f499}} 
+\index{ActiveRecordEntity@{ActiveRecordEntity}!addNewToTable@{addNewToTable}}
+\index{addNewToTable@{addNewToTable}!ActiveRecordEntity@{ActiveRecordEntity}}
+\doxysubsubsection{\texorpdfstring{addNewToTable()}{addNewToTable()}}
+{\footnotesize\ttfamily add\+New\+To\+Table (\begin{DoxyParamCaption}\item[{string}]{\$property,  }\item[{\mbox{\hyperlink{class_my_project_1_1_models_1_1_users_1_1_user}{User}}}]{\$user }\end{DoxyParamCaption})}
+
+adds current session user\`{}s email as the first data to the list in property \$plus\+By/\$minus\+By;
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$property} & ///string indicates which property is for further update; \\
+\hline
+User & {\em \$user} & ///current session user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a988627114c5702ca483c482114f78d69}\label{class_my_project_1_1_models_1_1_active_record_entity_a988627114c5702ca483c482114f78d69}} 
+\index{ActiveRecordEntity@{ActiveRecordEntity}!compareWithArray@{compareWithArray}}
+\index{compareWithArray@{compareWithArray}!ActiveRecordEntity@{ActiveRecordEntity}}
+\doxysubsubsection{\texorpdfstring{compareWithArray()}{compareWithArray()}}
+{\footnotesize\ttfamily compare\+With\+Array (\begin{DoxyParamCaption}\item[{string}]{\$sample,  }\item[{string}]{\$match }\end{DoxyParamCaption})}
+
+converts string \$match to array; compares if the string \$sample is in array \$match; 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$sample} & \\
+\hline
+string & {\em \$match} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a435e7d7525d4bcd0ed5e34a469f3adf6}\label{class_my_project_1_1_models_1_1_active_record_entity_a435e7d7525d4bcd0ed5e34a469f3adf6}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!create@{create}}
 \index{create@{create}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{create()}{create()}}
 {\footnotesize\ttfamily create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Undocumented function
-
-\begin{DoxyReturn}{Returns}
+function gets the array of properties and values, whose keys where changed according to msq syntaxes; then calls function \textquotesingle{}insert\textquotesingle{} with that array as params of the function; \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+gets the array of properties and values with msq syntaxes;
+
+calls function \textquotesingle{}insert\textquotesingle{} and gives array to operate; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a13bdffdd926f26b825ea57066334ff01}\label{class_my_project_1_1_models_1_1_active_record_entity_a13bdffdd926f26b825ea57066334ff01}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!delete@{delete}}
 \index{delete@{delete}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{delete()}{delete()}}
 {\footnotesize\ttfamily delete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Undocumented function
+function deletes data from Db table by specific row id;
 
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a6dd92173836562af5e1cf072a7400fd8}\label{class_my_project_1_1_models_1_1_active_record_entity_a6dd92173836562af5e1cf072a7400fd8}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a6dd92173836562af5e1cf072a7400fd8}\label{class_my_project_1_1_models_1_1_active_record_entity_a6dd92173836562af5e1cf072a7400fd8}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!deleteByColumn@{deleteByColumn}}
 \index{deleteByColumn@{deleteByColumn}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{deleteByColumn()}{deleteByColumn()}}
 {\footnotesize\ttfamily delete\+By\+Column (\begin{DoxyParamCaption}\item[{string}]{\$column\+Name,  }\item[{}]{\$value }\end{DoxyParamCaption})}
 
-Undocumented function
+function deletes data from Db table by specific column value;
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -173,7 +225,7 @@ string & {\em \$column\+Name} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a4cfc8eae6a2622086de99965491565be}\label{class_my_project_1_1_models_1_1_active_record_entity_a4cfc8eae6a2622086de99965491565be}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a4cfc8eae6a2622086de99965491565be}\label{class_my_project_1_1_models_1_1_active_record_entity_a4cfc8eae6a2622086de99965491565be}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findAll@{findAll}}
 \index{findAll@{findAll}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{findAll()}{findAll()}}
@@ -184,7 +236,7 @@ returns all data from Db table;
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ad541314c010587246806c2ca92f9f469}\label{class_my_project_1_1_models_1_1_active_record_entity_ad541314c010587246806c2ca92f9f469}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ad541314c010587246806c2ca92f9f469}\label{class_my_project_1_1_models_1_1_active_record_entity_ad541314c010587246806c2ca92f9f469}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findAllAsArrayByColumn@{findAllAsArrayByColumn}}
 \index{findAllAsArrayByColumn@{findAllAsArrayByColumn}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{findAllAsArrayByColumn()}{findAllAsArrayByColumn()}}
@@ -196,12 +248,13 @@ returns the found data in the form of an array in accordance with the specified 
 \begin{DoxyParams}[1]{Parameters}
 string & {\em \$column\+Name} & \\
 \hline
- & {\em \mbox{[}type\mbox{]}} & \$values //the list of search values; \\
+ & {\em \mbox{[}type\mbox{]}} & \$values ///the list of search values; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
+check if connection with Db is active; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a864d2081687c01e8bb3e45ef25f1636d}\label{class_my_project_1_1_models_1_1_active_record_entity_a864d2081687c01e8bb3e45ef25f1636d}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findAllByColumnASC@{findAllByColumnASC}}
 \index{findAllByColumnASC@{findAllByColumnASC}!ActiveRecordEntity@{ActiveRecordEntity}}
@@ -218,6 +271,7 @@ string & {\em \$column\+Name} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
+check if connection with Db is active; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a0cdbd2b16cef542688cdd773455b7cfe}\label{class_my_project_1_1_models_1_1_active_record_entity_a0cdbd2b16cef542688cdd773455b7cfe}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findAllByColumnDESC@{findAllByColumnDESC}}
 \index{findAllByColumnDESC@{findAllByColumnDESC}!ActiveRecordEntity@{ActiveRecordEntity}}
@@ -234,6 +288,7 @@ string & {\em \$column\+Name} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
+check if connection with Db is active; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a9e3e185c45a82c4bf02f7ca1fa9a5dc4}\label{class_my_project_1_1_models_1_1_active_record_entity_a9e3e185c45a82c4bf02f7ca1fa9a5dc4}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findAllWithOptionalColumnOrder@{findAllWithOptionalColumnOrder}}
 \index{findAllWithOptionalColumnOrder@{findAllWithOptionalColumnOrder}!ActiveRecordEntity@{ActiveRecordEntity}}
@@ -252,7 +307,7 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a58e30a7b33ce3de49804977f010b8410}\label{class_my_project_1_1_models_1_1_active_record_entity_a58e30a7b33ce3de49804977f010b8410}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a58e30a7b33ce3de49804977f010b8410}\label{class_my_project_1_1_models_1_1_active_record_entity_a58e30a7b33ce3de49804977f010b8410}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findOneByColumn@{findOneByColumn}}
 \index{findOneByColumn@{findOneByColumn}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{findOneByColumn()}{findOneByColumn()}}
@@ -270,7 +325,7 @@ string & {\em \$column\+Name} & \\
 \begin{DoxyReturn}{Returns}
 self$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a445a1523d13574ec950e33bd3cb7b2a6}\label{class_my_project_1_1_models_1_1_active_record_entity_a445a1523d13574ec950e33bd3cb7b2a6}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a445a1523d13574ec950e33bd3cb7b2a6}\label{class_my_project_1_1_models_1_1_active_record_entity_a445a1523d13574ec950e33bd3cb7b2a6}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!findUsersByNameDESC@{findUsersByNameDESC}}
 \index{findUsersByNameDESC@{findUsersByNameDESC}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{findUsersByNameDESC()}{findUsersByNameDESC()}}
@@ -284,6 +339,7 @@ string & {\em \$value} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
+check if connection with Db is active; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a7d314f1c3f23b03b01d9de14ed83fff7}\label{class_my_project_1_1_models_1_1_active_record_entity_a7d314f1c3f23b03b01d9de14ed83fff7}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesCountForUser@{getArticlesCountForUser}}
 \index{getArticlesCountForUser@{getArticlesCountForUser}!ActiveRecordEntity@{ActiveRecordEntity}}
@@ -300,7 +356,7 @@ integer & {\em \$id} & \\
 \begin{DoxyReturn}{Returns}
 integer 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ab0145f4eb9a1788e0ed929a802290270}\label{class_my_project_1_1_models_1_1_active_record_entity_ab0145f4eb9a1788e0ed929a802290270}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ab0145f4eb9a1788e0ed929a802290270}\label{class_my_project_1_1_models_1_1_active_record_entity_ab0145f4eb9a1788e0ed929a802290270}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsASCLimited@{getArticlesWithCommentsASCLimited}}
 \index{getArticlesWithCommentsASCLimited@{getArticlesWithCommentsASCLimited}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsASCLimited()}{getArticlesWithCommentsASCLimited()}}
@@ -318,7 +374,11 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af9caff96d973d804523c60c39e8ef120}\label{class_my_project_1_1_models_1_1_active_record_entity_af9caff96d973d804523c60c39e8ef120}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af9caff96d973d804523c60c39e8ef120}\label{class_my_project_1_1_models_1_1_active_record_entity_af9caff96d973d804523c60c39e8ef120}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsBySearchArgsLimited@{getArticlesWithCommentsBySearchArgsLimited}}
 \index{getArticlesWithCommentsBySearchArgsLimited@{getArticlesWithCommentsBySearchArgsLimited}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsBySearchArgsLimited()}{getArticlesWithCommentsBySearchArgsLimited()}}
@@ -330,13 +390,17 @@ integer & {\em \$page\+Num} & \\
 \hline
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a2a538ab4fc875a55038e8cb9f25d7485}\label{class_my_project_1_1_models_1_1_active_record_entity_a2a538ab4fc875a55038e8cb9f25d7485}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a2a538ab4fc875a55038e8cb9f25d7485}\label{class_my_project_1_1_models_1_1_active_record_entity_a2a538ab4fc875a55038e8cb9f25d7485}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsBySearchArgsLimitedASC@{getArticlesWithCommentsBySearchArgsLimitedASC}}
 \index{getArticlesWithCommentsBySearchArgsLimitedASC@{getArticlesWithCommentsBySearchArgsLimitedASC}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsBySearchArgsLimitedASC()}{getArticlesWithCommentsBySearchArgsLimitedASC()}}
@@ -348,13 +412,17 @@ integer & {\em \$page\+Num} & \\
 \hline
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af8e37dbad233656fc248a2f1ce7cece0}\label{class_my_project_1_1_models_1_1_active_record_entity_af8e37dbad233656fc248a2f1ce7cece0}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af8e37dbad233656fc248a2f1ce7cece0}\label{class_my_project_1_1_models_1_1_active_record_entity_af8e37dbad233656fc248a2f1ce7cece0}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsCountForUser@{getArticlesWithCommentsCountForUser}}
 \index{getArticlesWithCommentsCountForUser@{getArticlesWithCommentsCountForUser}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsCountForUser()}{getArticlesWithCommentsCountForUser()}}
@@ -370,7 +438,7 @@ integer & {\em \$id} & \\
 \begin{DoxyReturn}{Returns}
 integer 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a57e9d766c9d69046482686772b25ae93}\label{class_my_project_1_1_models_1_1_active_record_entity_a57e9d766c9d69046482686772b25ae93}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a57e9d766c9d69046482686772b25ae93}\label{class_my_project_1_1_models_1_1_active_record_entity_a57e9d766c9d69046482686772b25ae93}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsForUser@{getArticlesWithCommentsForUser}}
 \index{getArticlesWithCommentsForUser@{getArticlesWithCommentsForUser}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsForUser()}{getArticlesWithCommentsForUser()}}
@@ -386,7 +454,7 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aa372d484e086d089d262d20e08a233d8}\label{class_my_project_1_1_models_1_1_active_record_entity_aa372d484e086d089d262d20e08a233d8}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aa372d484e086d089d262d20e08a233d8}\label{class_my_project_1_1_models_1_1_active_record_entity_aa372d484e086d089d262d20e08a233d8}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getArticlesWithCommentsLimited@{getArticlesWithCommentsLimited}}
 \index{getArticlesWithCommentsLimited@{getArticlesWithCommentsLimited}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getArticlesWithCommentsLimited()}{getArticlesWithCommentsLimited()}}
@@ -404,7 +472,11 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a87e457d69a12f05de88dafc1f5fb0c10}\label{class_my_project_1_1_models_1_1_active_record_entity_a87e457d69a12f05de88dafc1f5fb0c10}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a87e457d69a12f05de88dafc1f5fb0c10}\label{class_my_project_1_1_models_1_1_active_record_entity_a87e457d69a12f05de88dafc1f5fb0c10}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getById@{getById}}
 \index{getById@{getById}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getById()}{getById()}}
@@ -420,7 +492,25 @@ integer & {\em \$id} & \\
 \begin{DoxyReturn}{Returns}
 self$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a12251d0c022e9e21c137a105ff683f13}\label{class_my_project_1_1_models_1_1_active_record_entity_a12251d0c022e9e21c137a105ff683f13}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a4eedf21f277a82b475282b56422a63ca}\label{class_my_project_1_1_models_1_1_active_record_entity_a4eedf21f277a82b475282b56422a63ca}} 
+\index{ActiveRecordEntity@{ActiveRecordEntity}!getCommentsCount@{getCommentsCount}}
+\index{getCommentsCount@{getCommentsCount}!ActiveRecordEntity@{ActiveRecordEntity}}
+\doxysubsubsection{\texorpdfstring{getCommentsCount()}{getCommentsCount()}}
+{\footnotesize\ttfamily static get\+Comments\+Count (\begin{DoxyParamCaption}\item[{int}]{\$items\+Per\+Page,  }\item[{array}]{\$get\+Values = {\ttfamily \mbox{[}\mbox{]}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Undocumented function
+
+
+\begin{DoxyParams}[1]{Parameters}
+integer & {\em \$items\+Per\+Page} & \\
+\hline
+array & {\em \$get\+Values} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a12251d0c022e9e21c137a105ff683f13}\label{class_my_project_1_1_models_1_1_active_record_entity_a12251d0c022e9e21c137a105ff683f13}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getId@{getId}}
 \index{getId@{getId}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getId()}{getId()}}
@@ -449,7 +539,7 @@ string & {\em \$column\+Name} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a70adace4adbd5b450205514944e92e02}\label{class_my_project_1_1_models_1_1_active_record_entity_a70adace4adbd5b450205514944e92e02}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a70adace4adbd5b450205514944e92e02}\label{class_my_project_1_1_models_1_1_active_record_entity_a70adace4adbd5b450205514944e92e02}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPage@{getPage}}
 \index{getPage@{getPage}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPage()}{getPage()}}
@@ -467,7 +557,11 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a680234687d09e9a4654c68298432e3c1}\label{class_my_project_1_1_models_1_1_active_record_entity_a680234687d09e9a4654c68298432e3c1}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a680234687d09e9a4654c68298432e3c1}\label{class_my_project_1_1_models_1_1_active_record_entity_a680234687d09e9a4654c68298432e3c1}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPageASC@{getPageASC}}
 \index{getPageASC@{getPageASC}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPageASC()}{getPageASC()}}
@@ -485,7 +579,11 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a6f72efb96b63d31185314164809a4530}\label{class_my_project_1_1_models_1_1_active_record_entity_a6f72efb96b63d31185314164809a4530}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a6f72efb96b63d31185314164809a4530}\label{class_my_project_1_1_models_1_1_active_record_entity_a6f72efb96b63d31185314164809a4530}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPageByRating@{getPageByRating}}
 \index{getPageByRating@{getPageByRating}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPageByRating()}{getPageByRating()}}
@@ -503,7 +601,9 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ac268ed7edc108d3ec96dc957cdc23d9b}\label{class_my_project_1_1_models_1_1_active_record_entity_ac268ed7edc108d3ec96dc957cdc23d9b}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ac268ed7edc108d3ec96dc957cdc23d9b}\label{class_my_project_1_1_models_1_1_active_record_entity_ac268ed7edc108d3ec96dc957cdc23d9b}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPagesCount@{getPagesCount}}
 \index{getPagesCount@{getPagesCount}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPagesCount()}{getPagesCount()}}
@@ -513,13 +613,13 @@ returns count of pages taking into account the count of items per page, optional
 \begin{DoxyParams}[1]{Parameters}
 integer & {\em \$items\+Per\+Page,;} & \\
 \hline
-string & {\em \$optional} & //optional query condition extending parameter; \\
+string & {\em \$optional} & ///optional query condition extending parameter; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aa39396957dd38deb9f4d65768424e35d}\label{class_my_project_1_1_models_1_1_active_record_entity_aa39396957dd38deb9f4d65768424e35d}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aa39396957dd38deb9f4d65768424e35d}\label{class_my_project_1_1_models_1_1_active_record_entity_aa39396957dd38deb9f4d65768424e35d}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPagesCountWithSearchArgs@{getPagesCountWithSearchArgs}}
 \index{getPagesCountWithSearchArgs@{getPagesCountWithSearchArgs}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPagesCountWithSearchArgs()}{getPagesCountWithSearchArgs()}}
@@ -529,15 +629,15 @@ returns count of pages taking into account the count of items per page, values f
 \begin{DoxyParams}[1]{Parameters}
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
-string & {\em \$optional} & //optional query condition extending parameter; \\
+string & {\em \$optional} & ///optional query condition extending parameter; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ae4de5bcdb0c3c5f156dd7c51d0930693}\label{class_my_project_1_1_models_1_1_active_record_entity_ae4de5bcdb0c3c5f156dd7c51d0930693}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ae4de5bcdb0c3c5f156dd7c51d0930693}\label{class_my_project_1_1_models_1_1_active_record_entity_ae4de5bcdb0c3c5f156dd7c51d0930693}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPagesWithCommentsCount@{getPagesWithCommentsCount}}
 \index{getPagesWithCommentsCount@{getPagesWithCommentsCount}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPagesWithCommentsCount()}{getPagesWithCommentsCount()}}
@@ -547,13 +647,13 @@ returns count of pages taking into account the count of items per page, values f
 \begin{DoxyParams}[1]{Parameters}
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ae1778856c776bf5ea4d8244cb977f7bb}\label{class_my_project_1_1_models_1_1_active_record_entity_ae1778856c776bf5ea4d8244cb977f7bb}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ae1778856c776bf5ea4d8244cb977f7bb}\label{class_my_project_1_1_models_1_1_active_record_entity_ae1778856c776bf5ea4d8244cb977f7bb}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPageWithSearchArgs@{getPageWithSearchArgs}}
 \index{getPageWithSearchArgs@{getPageWithSearchArgs}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPageWithSearchArgs()}{getPageWithSearchArgs()}}
@@ -565,17 +665,21 @@ integer & {\em \$page\+Num} & \\
 \hline
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
 string & {\em \$order\+By} & \\
 \hline
-string & {\em \$optional} & //optional query condition extending parameter; \\
+string & {\em \$optional} & ///optional query condition extending parameter; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a36609fccbba68013d1655135a1f550d0}\label{class_my_project_1_1_models_1_1_active_record_entity_a36609fccbba68013d1655135a1f550d0}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a36609fccbba68013d1655135a1f550d0}\label{class_my_project_1_1_models_1_1_active_record_entity_a36609fccbba68013d1655135a1f550d0}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getPageWithSearchArgsASC@{getPageWithSearchArgsASC}}
 \index{getPageWithSearchArgsASC@{getPageWithSearchArgsASC}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getPageWithSearchArgsASC()}{getPageWithSearchArgsASC()}}
@@ -587,17 +691,21 @@ integer & {\em \$page\+Num} & \\
 \hline
 integer & {\em \$items\+Per\+Page} & \\
 \hline
-array & {\em \$get\+Values} & //values from user search rows; \\
+array & {\em \$get\+Values} & ///values from user search rows; \\
 \hline
 string & {\em \$order\+By} & \\
 \hline
-string & {\em \$optional} & //optional query condition extending parameter; \\
+string & {\em \$optional} & ///optional query condition extending parameter; \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 array 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aca1ee7510938de50d8290cf81a18e938}\label{class_my_project_1_1_models_1_1_active_record_entity_aca1ee7510938de50d8290cf81a18e938}} 
+check if connection with Db is active;
+
+initiates array of all articles id to use it as a map in page pagination;
+
+starting article id in query;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_aca1ee7510938de50d8290cf81a18e938}\label{class_my_project_1_1_models_1_1_active_record_entity_aca1ee7510938de50d8290cf81a18e938}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getStartingId@{getStartingId}}
 \index{getStartingId@{getStartingId}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getStartingId()}{getStartingId()}}
@@ -613,7 +721,7 @@ string & {\em \$optional} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_adc72b4e9f24a2013de0ffd5ba6dc21b9}\label{class_my_project_1_1_models_1_1_active_record_entity_adc72b4e9f24a2013de0ffd5ba6dc21b9}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_adc72b4e9f24a2013de0ffd5ba6dc21b9}\label{class_my_project_1_1_models_1_1_active_record_entity_adc72b4e9f24a2013de0ffd5ba6dc21b9}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getStartingIdForSortingWithComments@{getStartingIdForSortingWithComments}}
 \index{getStartingIdForSortingWithComments@{getStartingIdForSortingWithComments}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getStartingIdForSortingWithComments()}{getStartingIdForSortingWithComments()}}
@@ -627,7 +735,7 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ac1edbad6e02fc5ae2155772eedf3f693}\label{class_my_project_1_1_models_1_1_active_record_entity_ac1edbad6e02fc5ae2155772eedf3f693}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_ac1edbad6e02fc5ae2155772eedf3f693}\label{class_my_project_1_1_models_1_1_active_record_entity_ac1edbad6e02fc5ae2155772eedf3f693}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getStartingIdForSortingWithCommentsWithSearchArgs@{getStartingIdForSortingWithCommentsWithSearchArgs}}
 \index{getStartingIdForSortingWithCommentsWithSearchArgs@{getStartingIdForSortingWithCommentsWithSearchArgs}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getStartingIdForSortingWithCommentsWithSearchArgs()}{getStartingIdForSortingWithCommentsWithSearchArgs()}}
@@ -643,7 +751,7 @@ array & {\em \$get\+Values} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a70613db916c80e8ec0728cd33c3a78a5}\label{class_my_project_1_1_models_1_1_active_record_entity_a70613db916c80e8ec0728cd33c3a78a5}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a70613db916c80e8ec0728cd33c3a78a5}\label{class_my_project_1_1_models_1_1_active_record_entity_a70613db916c80e8ec0728cd33c3a78a5}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getStartingIdForSortingWithSearchArgs@{getStartingIdForSortingWithSearchArgs}}
 \index{getStartingIdForSortingWithSearchArgs@{getStartingIdForSortingWithSearchArgs}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getStartingIdForSortingWithSearchArgs()}{getStartingIdForSortingWithSearchArgs()}}
@@ -661,7 +769,7 @@ string & {\em \$order\+By} & \\
 \begin{DoxyReturn}{Returns}
 array$\vert$null 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af8ecb4112172080e99c766d232a38706}\label{class_my_project_1_1_models_1_1_active_record_entity_af8ecb4112172080e99c766d232a38706}} 
+check if connection with Db is active;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af8ecb4112172080e99c766d232a38706}\label{class_my_project_1_1_models_1_1_active_record_entity_af8ecb4112172080e99c766d232a38706}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!getTableName@{getTableName}}
 \index{getTableName@{getTableName}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{getTableName()}{getTableName()}}
@@ -691,22 +799,27 @@ array$\vert$null
 \doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
 {\footnotesize\ttfamily refresh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
-Undocumented function
+function fills the object properties according to Db table columns values;
 
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_afc8a3c62679cf00ade9f15fb2a6d6132}\label{class_my_project_1_1_models_1_1_active_record_entity_afc8a3c62679cf00ade9f15fb2a6d6132}} 
+creates object by filling his properties by Db table values;
+
+sets properties access specifier as \textquotesingle{}accessible\textquotesingle{};
+
+assigns \$get\+Object-\/\texorpdfstring{$>$}{>}properties to \$this-\/\texorpdfstring{$>$}{>}properties;\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_afc8a3c62679cf00ade9f15fb2a6d6132}\label{class_my_project_1_1_models_1_1_active_record_entity_afc8a3c62679cf00ade9f15fb2a6d6132}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!save@{save}}
 \index{save@{save}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{save()}{save()}}
 {\footnotesize\ttfamily save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Undocumented function
-
-\begin{DoxyReturn}{Returns}
+function gets the array of properties and values, whose keys where changed according to msq syntaxes; then calls function \textquotesingle{}update\textquotesingle{} with that array as params of the function; \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+gets the array of properties and values with msq syntaxes;
+
+calls function \textquotesingle{}update\textquotesingle{} and gives array to operate; ~\newline
 \mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_af8e956b8b0343ff7d1b955c26cb0c780}\label{class_my_project_1_1_models_1_1_active_record_entity_af8e956b8b0343ff7d1b955c26cb0c780}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!setId@{setId}}
 \index{setId@{setId}!ActiveRecordEntity@{ActiveRecordEntity}}
@@ -723,14 +836,40 @@ integer & {\em \$id} & \\
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a941f333e8e75ea1e98e3d1b8c6995048}\label{class_my_project_1_1_models_1_1_active_record_entity_a941f333e8e75ea1e98e3d1b8c6995048}} 
+\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a651237ed96f61cffacbef1ba046d75c7}\label{class_my_project_1_1_models_1_1_active_record_entity_a651237ed96f61cffacbef1ba046d75c7}} 
 \index{ActiveRecordEntity@{ActiveRecordEntity}!setRate@{setRate}}
 \index{setRate@{setRate}!ActiveRecordEntity@{ActiveRecordEntity}}
 \doxysubsubsection{\texorpdfstring{setRate()}{setRate()}}
-{\footnotesize\ttfamily set\+Rate (\begin{DoxyParamCaption}\item[{string}]{\$column,  }\item[{}]{\$rate }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily set\+Rate (\begin{DoxyParamCaption}\item[{string}]{\$column,  }\item[{}]{\$updates }\end{DoxyParamCaption})}
 
-Undocumented function
+enters the rater\textquotesingle{}s email in the \textquotesingle{}minus\+\_\+by\textquotesingle{}, \textquotesingle{}plus\+\_\+by\textquotesingle{} columns; updates the object rating in the \textquotesingle{}minus\textquotesingle{}, \textquotesingle{}plus\textquotesingle{} columns of the table; 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$column} & \\
+\hline
+ & {\em \mbox{[}type\mbox{]}} & \$updates ///rater\textquotesingle{}s email or rating points; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+check if connection with Db is active; ~\newline
+\mbox{\Hypertarget{class_my_project_1_1_models_1_1_active_record_entity_a59fb4c0cfba7322983ef72e4b0622460}\label{class_my_project_1_1_models_1_1_active_record_entity_a59fb4c0cfba7322983ef72e4b0622460}} 
+\index{ActiveRecordEntity@{ActiveRecordEntity}!unRate@{unRate}}
+\index{unRate@{unRate}!ActiveRecordEntity@{ActiveRecordEntity}}
+\doxysubsubsection{\texorpdfstring{unRate()}{unRate()}}
+{\footnotesize\ttfamily un\+Rate (\begin{DoxyParamCaption}\item[{string}]{\$follower\+Email,  }\item[{string}]{\$pull,  }\item[{string}]{\$property }\end{DoxyParamCaption})}
 
+function excludes string data from \$follower\+Email from list of emails in variable \$pull;
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$follower\+Email} & ///session user email; \\
+\hline
+string & {\em \$pull} & ///data from column \textquotesingle{}plus\+\_\+by\textquotesingle{} or \textquotesingle{}minus\+\_\+by\textquotesingle{}; \\
+\hline
+string & {\em \$property} & ///string indicates which property is for further update; \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}

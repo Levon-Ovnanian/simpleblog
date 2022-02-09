@@ -1,11 +1,11 @@
 \begin{quote}
 I also make \href{https://caret.io?ref=parsedown}{\texttt{ Caret}} -\/ a Markdown editor for Mac and PC. \end{quote}
-\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{Parsedown}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md1}
+\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md0}{}\doxysubsection{Parsedown}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md0}
 \href{https://travis-ci.org/erusev/parsedown}{\texttt{ }}
 
 Better Markdown Parser in PHP
 
-\href{http://parsedownparsedown.org/demo}{\texttt{ Demo}} $\vert$ \href{http://parsedown.org/speed}{\texttt{ Benchmarks}} $\vert$ \href{http://parsedown.org/tests/}{\texttt{ Tests}} $\vert$ \href{https://github.com/erusev/parsedown/wiki/}{\texttt{ Documentation}}\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md2}{}\doxysubsubsection{Features}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md2}
+\href{http://parsedownparsedown.org/demo}{\texttt{ Demo}} $\vert$ \href{http://parsedown.org/speed}{\texttt{ Benchmarks}} $\vert$ \href{http://parsedown.org/tests/}{\texttt{ Tests}} $\vert$ \href{https://github.com/erusev/parsedown/wiki/}{\texttt{ Documentation}}\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md1}{}\doxysubsubsection{Features}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md1}
 
 \begin{DoxyItemize}
 \item One File
@@ -15,8 +15,8 @@ Better Markdown Parser in PHP
 \item \href{https://help.github.com/articles/github-flavored-markdown}{\texttt{ Git\+Hub flavored}}
 \item Tested in 5.\+3 to 7.\+1 and in HHVM
 \item \href{https://github.com/erusev/parsedown-extra}{\texttt{ Markdown Extra extension}}
-\end{DoxyItemize}\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md3}{}\doxysubsubsection{Installation}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md3}
-Include {\ttfamily Parsedown.\+php} or install \href{https://packagist.org/packages/erusev/parsedown}{\texttt{ the composer package}}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md4}{}\doxysubsubsection{Example}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md4}
+\end{DoxyItemize}\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md2}{}\doxysubsubsection{Installation}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md2}
+Include {\ttfamily Parsedown.\+php} or install \href{https://packagist.org/packages/erusev/parsedown}{\texttt{ the composer package}}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md3}{}\doxysubsubsection{Example}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md3}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\$Parsedown = new Parsedown();}
@@ -26,7 +26,7 @@ Include {\ttfamily Parsedown.\+php} or install \href{https://packagist.org/packa
 \end{DoxyCode}
 
 
-More examples in \href{https://github.com/erusev/parsedown/wiki/}{\texttt{ the wiki}} and in \href{http://youtu.be/wYZBY8DEikI}{\texttt{ this video tutorial}}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{Security}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md5}
+More examples in \href{https://github.com/erusev/parsedown/wiki/}{\texttt{ the wiki}} and in \href{http://youtu.be/wYZBY8DEikI}{\texttt{ this video tutorial}}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md4}{}\doxysubsubsection{Security}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md4}
 \mbox{\hyperlink{class_parsedown}{Parsedown}} is capable of escaping user-\/input within the HTML that it generates. Additionally \mbox{\hyperlink{class_parsedown}{Parsedown}} will apply sanitisation to additional scripting vectors (such as scripting link destinations) that are introduced by the markdown syntax itself.
 
 To tell \mbox{\hyperlink{class_parsedown}{Parsedown}} that it is processing untrusted user-\/input, use the following\+: 
@@ -39,8 +39,8 @@ To tell \mbox{\hyperlink{class_parsedown}{Parsedown}} that it is processing untr
 
 If instead, you wish to allow HTML within untrusted user-\/input, but still want output to be free from XSS it is recommended that you make use of a HTML sanitiser that allows HTML tags to be whitelisted, like \href{http://htmlpurifier.org/}{\texttt{ HTML Purifier}}.
 
-In both cases you should strongly consider employing defence-\/in-\/depth measures, like \href{https://scotthelme.co.uk/content-security-policy-an-introduction/}{\texttt{ deploying a Content-\/\+Security-\/\+Policy}} (a browser security feature) so that your page is likely to be safe even if an attacker finds a vulnerability in one of the first lines of defence above.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md6}{}\doxyparagraph{Security of Parsedown Extensions}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md6}
-Safe mode does not necessarily yield safe results when using extensions to \mbox{\hyperlink{class_parsedown}{Parsedown}}. Extensions should be evaluated on their own to determine their specific safety against XSS.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{Escaping HTML}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md7}
+In both cases you should strongly consider employing defence-\/in-\/depth measures, like \href{https://scotthelme.co.uk/content-security-policy-an-introduction/}{\texttt{ deploying a Content-\/\+Security-\/\+Policy}} (a browser security feature) so that your page is likely to be safe even if an attacker finds a vulnerability in one of the first lines of defence above.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md5}{}\doxyparagraph{Security of Parsedown Extensions}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md5}
+Safe mode does not necessarily yield safe results when using extensions to \mbox{\hyperlink{class_parsedown}{Parsedown}}. Extensions should be evaluated on their own to determine their specific safety against XSS.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsection{Escaping HTML}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md6}
 \begin{quote}
 ⚠️  $\ast$$\ast$\+WARNING\+:$\ast$$\ast$ This method isn\textquotesingle{}t safe from XSS! \end{quote}
 If you wish to escape HTML {\bfseries{in trusted input}}, you can use the following\+: 
@@ -51,7 +51,7 @@ If you wish to escape HTML {\bfseries{in trusted input}}, you can use the follow
 \end{DoxyCode}
 
 
-Beware that this still allows users to insert unsafe scripting vectors, such as links like {\ttfamily \mbox{[}xss\mbox{]}(javascript\+:alert\%281\%29)}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{Questions}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md8}
+Beware that this still allows users to insert unsafe scripting vectors, such as links like {\ttfamily \mbox{[}xss\mbox{]}(javascript\+:alert\%281\%29)}.\hypertarget{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{Questions}\label{md_vendor_erusev_parsedown__r_e_a_d_m_e_autotoc_md7}
 {\bfseries{How does \mbox{\hyperlink{class_parsedown}{Parsedown}} work?}}
 
 It tries to read Markdown like a human. First, it looks at the lines. It’s interested in how the lines start. This helps it recognise blocks. It knows, for example, that if a line starts with a {\ttfamily -\/} then perhaps it belongs to a list. Once it recognises the blocks, it continues to the content. As it reads, it watches out for special characters. This helps it recognise inline elements (or inlines).
