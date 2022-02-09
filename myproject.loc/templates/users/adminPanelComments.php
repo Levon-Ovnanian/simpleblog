@@ -36,7 +36,9 @@
                 <br>
             <?php endforeach; ?>        
         <?php endfor; ?>
-    <?php else : ?>      
+    <?php elseif (empty($articles)) : ?>      
+        <p>Комментариев пока нет</p>    
+    <?php else: ?>
         <p>Комментариев в статьях на этой странице нет</p>
     <?php endif; ?>
    </div>
