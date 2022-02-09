@@ -38,7 +38,7 @@ class MainController extends AbstractController
                 throw new NotFoundException('Привет! К сожалению, у нас еще нет статей! Но ты сам можешь создать ее :)');
             }
 
-            if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            if ($searchArgAsArray[0] !== 'name' || $searchArgAsArray[0] !== 'text' || $searchArgAsArray[0] !== 'nickname') {
                 $searchArgAsArray[0] ='null';
             }
 
@@ -48,7 +48,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c тиким фильтром!');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -60,7 +60,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c тиким фильтром!');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -72,7 +72,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c тиким фильтром!');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -84,7 +84,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас еще нет статей c комментариями! Начни общение первым :)');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -96,7 +96,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray, 'ratingDESC');
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c тиким фильтром!');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -108,7 +108,7 @@ class MainController extends AbstractController
                     $pagesCountAsArray = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
-                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c тиким фильтром!');
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
                     }
                     $pagesCount = $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
@@ -163,11 +163,14 @@ class MainController extends AbstractController
                 } 
                 elseif ($orderBy === 'ratingDESC') {                  
                     $pagesCountAsArray = Article::getPagesCount($itemsPerPage, 'ratingDESC');
+                    $articlesCount = $pagesCountAsArray[1];
+                    if ($articlesCount == false) {
+                        throw new NotFoundException('Привет! К сожалению, у нас еще нет статей c таким фильтром');
+                    }
                     $pagesCount =  $pagesCountAsArray[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
                         throw new NotFoundException('Привет! Ты куда-то не туда перешел :)');
                     }
-                    $articlesCount = $pagesCountAsArray[1];
                     $articles = Article::getPageByRating($pageNum, $itemsPerPage, 'plus DESC');
                 } else {
                     $orderBy = 'DESC';

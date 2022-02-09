@@ -312,8 +312,11 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
          
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT DISTINCT users_comments.article_id FROM users_comments INNER JOIN users ON users.nickname LIKE '%" 
+           $sql = "SELECT DISTINCT articles.id FROM articles INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%'
+            AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id ORDER BY articles.id " . $orderBy . ";";
+            /* $sql = "SELECT DISTINCT users_comments.article_id FROM users_comments INNER JOIN users ON users.nickname LIKE '%" 
                 . $getValues[1] . "%' WHERE users.id = users_comments.user_id ORDER BY users_comments.article_id " . $orderBy . ";";
+             */   
         } else {
             $sql = "SELECT DISTINCT users_comments.article_id FROM users_comments INNER JOIN articles ON articles." . $getValues[0] . " LIKE '%" 
                 . $getValues[1] . "%' WHERE articles.id = users_comments.article_id ORDER BY users_comments.article_id " . $orderBy . ";";
@@ -554,13 +557,38 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
 
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN users 
-                ON users." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE users.id = users_comments.user_id;";
+            $sql = "SELECT COUNT(DISTINCT articles.id) AS cnt FROM articles INNER JOIN users 
+            ON users.nickname LIKE '%". $getValues[1] ."%' AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id;";    
         } elseif (!empty($getValues)) {
             $sql = "SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles 
                 ON articles." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE articles.id = users_comments.article_id;";
         } else {
             $sql = "SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;";
+        }
+
+        $result = $db->query($sql); 
+        
+        return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt];
+    }
+   /**
+    * Undocumented function
+    *
+    * @param integer $itemsPerPage
+    * @param array $getValues
+    * @return array
+    */
+    public static function getCommentsCount(int $itemsPerPage, array $getValues = []): array
+    {
+        $db = Db::getInstance(); ///check if connection with Db is active;
+
+        if ($getValues[0] === 'nickname') {
+            $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN users 
+                ON users." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE users.id = users_comments.user_id;";
+        } elseif (!empty($getValues)) {
+            $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles 
+                ON articles." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE articles.id = users_comments.article_id;";
+        } else {
+            $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;";
         }
 
         $result = $db->query($sql); 
@@ -664,13 +692,14 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $idAsArray = static::getStartingIdForSortingWithCommentsWithSearchArgs('DESC', $getValues); ///initiates array of all articles id to use it as a map in page pagination; 
         $nextPage = ($pageNum - 1) * $itemsPerPage;
         $startId = $idAsArray[$nextPage]->article_id; ///starting article id in query;
-
+        
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
+            /*$sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
                 FROM " . static::getTableName() . " INNER JOIN users_comments ON articles.id = users_comments.article_id 
                 INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%' AND users.id = users_comments.user_id
-                WHERE articles.id <= " .  $startId . " order by articles.id DESC LIMIT " . $itemsPerPage . ";";
-        
+                WHERE articles.id <= " .  $startId . " order by articles.id DESC LIMIT " . $itemsPerPage . ";";*/
+        $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at FROM " . static::getTableName() . " 
+        INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%' AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id order by articles.id DESC LIMIT " . $itemsPerPage . ";";
         } else {
             $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
                 FROM " . static::getTableName() . " INNER JOIN users_comments ON articles." . $getValues[0] . " LIKE '%" . $getValues[1] . "%'

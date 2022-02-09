@@ -1,26 +1,35 @@
 <td style="overflow: auto;"> 
     <div class= "adminPanelArticles">
         <h3>Всего статей: <?= $articlesCount; ?></h3>
-        <p><strong>Название статьи</strong></p>
         <?php if ($error): ?>
             <form action="/adminpanel" method="post">
                 <p><select size="1" name="orderBy">
-                    <?php if ($orderBy === 'DESC' || $orderBy === null): ?>     
+                    <?php if ($orderBy === 'ratingDESC'): ?>
+                        <option selected value="ratingDESC">Только с высоким рейтингом</option>
+                        <option value="DESC">Сначала новые</option>
+                        <option value= "ASC">Сначала старые</option>
+                        <option value= "withComments">Сначала новые с комментариями</option>
+                        <option value= "withCommentsASC">Сначала старые с комментариями</option>
+                    <?php elseif ($orderBy === 'DESC' || $orderBy === null): ?>
+                             
                         <option selected value="DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'ASC'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option selected value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'withComments'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option selected value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'withCommentsASC'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
@@ -39,22 +48,32 @@
         <?php else: ?>    
             <form action="/adminpanel" method="post">
                 <p><select size="1" name="orderBy">
-                    <?php if ($orderBy === 'DESC' || $orderBy === null): ?>     
+                    <?php if ($orderBy === 'ratingDESC'): ?>
+                        <option selected value="ratingDESC">Только с высоким рейтингом</option>
+                        <option value= "DESC">Сначала новые</option>
+                        <option value= "ASC">Сначала старые</option>
+                        <option value= "withComments">Сначала новые с комментариями</option>
+                        <option value= "withCommentsASC">Сначала старые с комментариями</option>
+                    <?php elseif ($orderBy === 'DESC' || $orderBy === null): ?>
+                        <option value="ratingDESC">Только с высоким рейтингом</option>     
                         <option selected value="DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'ASC'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option selected value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'withComments'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option selected value= "withComments">Сначала новые с комментариями</option>
                         <option value= "withCommentsASC">Сначала старые с комментариями</option>
                     <?php elseif($orderBy === 'withCommentsASC'): ?>
+                        <option value= "ratingDESC">Только с высоким рейтингом</option> 
                         <option value= "DESC">Сначала новые</option>
                         <option value= "ASC">Сначала старые</option>
                         <option value= "withComments">Сначала новые с комментариями</option>
@@ -79,6 +98,8 @@
                     <?php endforeach; ?>
                 <?php endif; ?>            
                 <p>"<a href="/articles/<?= $article->getId()?>"><?= $article->getName(); ?>"</a></p>
+                <img src="http://176.36.123.219/service_images/arrow_up154593.svg" height="10px"></a><?= $article->getPlus(); ?>
+                <img src="http://176.36.123.219/service_images/arrow_down154593.svg" height="10px"></a><?= $article->getMinus(); ?>
                 &nbsp;&nbsp;&nbsp;
                 <p><?= $article->getShortText(150); ?></p>
                 <p>Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a></p>

@@ -313,14 +313,14 @@ class UsersController extends AbstractController
                 throw new NotFoundException('Пользователь не найден');
             }
 
-            if ($_POST['role'] AND $_POST['role'] === 'user' XOR $_POST['role'] === 'admin') {
+            if ($_POST['role'] AND $_POST['role'] === 'user' OR $_POST['role'] === 'admin') {
                 
                 $userManaged->setRole($_POST['role']);
                 $userManaged->setEmailSendIfArticle((int)$_POST['EmailSendIfArticle']);       
                 $userManaged->setEmailSendIfComment((int)$_POST['EmailSendIfComment']);
                 $userManaged->setEmailSendIfAddFollower((int)$_POST['EmailSendIfAddFollower']);   
                 $userManaged->setEmailSendIfDellFollower((int)$_POST['EmailSendIfDellFollower']); 
-                if ($_POST['status'] === 'active' XOR $_POST['status'] === 'limited' XOR $_POST['status'] === 'blocked') {
+                if ($_POST['status'] === 'active' OR $_POST['status'] === 'limited' OR $_POST['status'] === 'blocked') {
                     $userManaged->setStatus($_POST['status']);
                 } else {
                     $_POST['status'] = $userManaged->getStatus();
@@ -403,7 +403,7 @@ class UsersController extends AbstractController
             $orderBy = $_POST['orderBy'] ? $_POST['orderBy'] : $articlesOrder;
             $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
 
-            if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
+            if ($searchArgAsArray[0] !== 'name' || $searchArgAsArray[0] !== 'text' || $searchArgAsArray[0] !== 'nickname') {
                 $searchArgAsArray[0] ='null';
             }
             
@@ -417,10 +417,11 @@ class UsersController extends AbstractController
                     }
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ((int)$pageNum > (int)$pagesCount || (int)$pageNum <= 0) {
-                        //throw new NotFoundException('Данной станицы не существует');
                         $pageNum = $pagesCount;
                     }
                     $articles = Article::getPageWithSearchArgsASC($pageNum, $itemsPerPage, $searchArgAsArray);
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage, $searchArgAsArray);
+                    $commentsCount = $getCommentsCount[1];
                 }    
                 elseif ($orderBy === 'DESC') {  
                     $pagesAndArticlesCounter = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray);
@@ -433,6 +434,8 @@ class UsersController extends AbstractController
                         $pageNum = $pagesCount;
                     }
                     $articles = Article::getPageWithSearchArgs($pageNum, $itemsPerPage, $searchArgAsArray);
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage, $searchArgAsArray);
+                    $commentsCount = $getCommentsCount[1];
                 }       
                 elseif ($orderBy === 'withComments') {
                     $pagesAndArticlesCounter = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
@@ -445,6 +448,8 @@ class UsersController extends AbstractController
                         $pageNum = $pagesCount;
                     }
                     $articles = Article::getArticlesWithCommentsBySearchArgsLimited($pageNum, $itemsPerPage, $searchArgAsArray);
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage, $searchArgAsArray);
+                    $commentsCount = $getCommentsCount[1];
                 }
                 elseif ($orderBy === 'withCommentsASC') {
                     $pagesAndArticlesCounter = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
@@ -457,6 +462,20 @@ class UsersController extends AbstractController
                         $pageNum = $pagesCount;
                     }
                     $articles = Article::getArticlesWithCommentsBySearchArgsLimitedASC($pageNum, $itemsPerPage, $searchArgAsArray);
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage, $searchArgAsArray);
+                    $commentsCount = $getCommentsCount[1];
+                } 
+                elseif ($orderBy === 'ratingDESC') {
+                    $pagesCountAsArray = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray, 'ratingDESC');
+                    $articlesCount = $pagesCountAsArray[1];
+                    if ($articlesCount == false) {
+                        throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
+                    }
+                    $pagesCount = $pagesCountAsArray[0];
+                    if ($pageNum > $pagesCount || $pageNum <= 0) {
+                        $pageNum = $pagesCount;
+                    }
+                    $articles = Article::getPageWithSearchArgs($pageNum, $itemsPerPage, $searchArgAsArray, 'plus DESC', 'ratingDESC');
                 } else {
                     $orderBy ='DESC';  
                     $pagesAndArticlesCounter = Article::getPagesCountWithSearchArgs($itemsPerPage, $searchArgAsArray);
@@ -481,6 +500,8 @@ class UsersController extends AbstractController
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getPageASC($pageNum, $itemsPerPage, 'articles.id ASC');
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage);
+                    $commentsCount = $getCommentsCount[1];
                 }    
                 elseif ($orderBy === 'DESC') {  
                     $pagesAndArticlesCounter = Article::getPagesCount($itemsPerPage);
@@ -490,6 +511,8 @@ class UsersController extends AbstractController
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getPage($pageNum, $itemsPerPage, 'articles.id DESC');
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage);
+                    $commentsCount = $getCommentsCount[1];
                 }       
                 elseif ($orderBy === 'withComments') {
                     $pagesAndArticlesCounter = Article::getPagesWithCommentsCount($itemsPerPage);
@@ -502,6 +525,8 @@ class UsersController extends AbstractController
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getArticlesWithCommentsLimited($pageNum, $itemsPerPage, 'DESC');
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage);
+                    $commentsCount = $getCommentsCount[1];
                 }
                 elseif ($orderBy === 'withCommentsASC') {
                     $pagesAndArticlesCounter = Article::getPagesWithCommentsCount($itemsPerPage);
@@ -514,21 +539,36 @@ class UsersController extends AbstractController
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getArticlesWithCommentsASCLimited($pageNum, $itemsPerPage, 'ASC');
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage);
+                    $commentsCount = $getCommentsCount[1];
+                }    
+                elseif ($orderBy === 'ratingDESC') {                  
+                    $pagesCountAsArray = Article::getPagesCount($itemsPerPage, 'ratingDESC');
+                    $articlesCount = $pagesCountAsArray[1];
+                    if ($articlesCount == false) {
+                        throw new NotFoundException('Привет! К сожалению, у нас еще нет статей c таким фильтром');
+                    }
+                    $pagesCount =  $pagesCountAsArray[0];
+                    if ($pageNum > $pagesCount || $pageNum <= 0) {
+                        $pageNum = $pagesCount;
+                    }
+                    $articles = Article::getPageByRating($pageNum, $itemsPerPage, 'plus DESC');    
                 } else {
                     $orderBy = 'DESC'; 
                     $pagesAndArticlesCounter = Article::getPagesCount($itemsPerPage);
                     $pagesCount = $pagesAndArticlesCounter[0];
                     if ($pageNum > $pagesCount || $pageNum <= 0) {
-                        throw new NotFoundException('Данной станицы не существует');
+                        $pageNum = $pagesCount;
                     }
                     $articlesCount = $pagesAndArticlesCounter[1];
                     $articles = Article::getPage($pageNum, $itemsPerPage, 'articles.id DESC');
+                    $getCommentsCount = Comment::getCommentsCount($itemsPerPage);
+                    $commentsCount = $getCommentsCount[1];
                 }
             }
 
             $comments = Comment::getCommentsArrayForAdminPanel($articles);
-            $getCommentsCount = Comment::getPagesCount(1);
-            $commentsCount = $getCommentsCount[1];
+        
 
         } catch (NotFoundException $e) {
             $this->view->renderHtml('users/adminPanel.php', ['error' => $e->getMessage(), 'user' => $this->user], 404);

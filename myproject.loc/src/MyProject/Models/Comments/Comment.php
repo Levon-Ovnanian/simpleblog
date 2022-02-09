@@ -329,7 +329,7 @@ class Comment extends ActiveRecordEntity
     {   
         $db = Db::getInstance();
         foreach ($values as $value) {
-            $sql = $db->query('SELECT * FROM ' . static::getTableName() . ' WHERE article_id = :value LIMIT 5;',
+            $sql = $db->query('SELECT * FROM ' . static::getTableName() . ' WHERE article_id = :value ORDER BY comment_key LIMIT 5;',
                 [':value' => $value->id],
                 static::class
             );
