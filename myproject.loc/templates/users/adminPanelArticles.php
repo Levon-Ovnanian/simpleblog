@@ -98,15 +98,14 @@
                     <?php endforeach; ?>
                 <?php endif; ?>            
                 <p>"<a href="/articles/<?= $article->getId()?>"><?= $article->getName(); ?>"</a></p>
-                <img src="http://176.36.123.219/service_images/arrow_up154593.svg" height="10px"></a><?= $article->getPlus(); ?>
-                <img src="http://176.36.123.219/service_images/arrow_down154593.svg" height="10px"></a><?= $article->getMinus(); ?>
                 &nbsp;&nbsp;&nbsp;
                 <p><?= $article->getShortText(150); ?></p>
-                <p>Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a></p>
+                Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a><br>
+                <span>Рейтинг статьи: + <?= $article->getPlus(); ?> | <?= $article->getMinus(); ?></span><br>
+                <span>Рейтинг автора: <?= $article->getAuthorId()->getRating(); ?><br><br>
                 <a href="/articles/<?= $article->getId(); ?>/edit/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>">Редактировать</a>
                 | <a href="/articles/<?= $article->getId()?>/delete/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>" style="color: red;">Удалить</a> 
                 <hr>
-                <br>
             <?php endforeach; ?>
         <?php endif; ?>    
     </div>

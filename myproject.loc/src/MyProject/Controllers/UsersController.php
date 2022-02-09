@@ -313,7 +313,7 @@ class UsersController extends AbstractController
                 throw new NotFoundException('Пользователь не найден');
             }
 
-            if ($_POST['role'] AND $_POST['role'] === 'user' OR $_POST['role'] === 'admin') {
+            if ($_POST['role'] AND $_POST['role'] === 'user' XOR $_POST['role'] === 'admin') {
                 
                 $userManaged->setRole($_POST['role']);
                 $userManaged->setEmailSendIfArticle((int)$_POST['EmailSendIfArticle']);       
@@ -403,7 +403,7 @@ class UsersController extends AbstractController
             $orderBy = $_POST['orderBy'] ? $_POST['orderBy'] : $articlesOrder;
             $searchArgAsArray = $_POST['mainSearchPanelArguments'] ? [$_POST['mainSearchPanel'], $_POST['mainSearchPanelArguments']]: $searchArgs = explode('/', $searchArgs);
 
-            if ($searchArgAsArray[0] !== 'name' || $searchArgAsArray[0] !== 'text' || $searchArgAsArray[0] !== 'nickname') {
+            if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
                 $searchArgAsArray[0] ='null';
             }
             

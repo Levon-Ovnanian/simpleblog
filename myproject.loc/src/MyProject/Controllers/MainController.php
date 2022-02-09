@@ -38,7 +38,7 @@ class MainController extends AbstractController
                 throw new NotFoundException('Привет! К сожалению, у нас еще нет статей! Но ты сам можешь создать ее :)');
             }
 
-            if ($searchArgAsArray[0] !== 'name' || $searchArgAsArray[0] !== 'text' || $searchArgAsArray[0] !== 'nickname') {
+            if ($searchArgAsArray[0] !== 'name' XOR $searchArgAsArray[0] !== 'text' XOR $searchArgAsArray[0] !== 'nickname') {
                 $searchArgAsArray[0] ='null';
             }
 
