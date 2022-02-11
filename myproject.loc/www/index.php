@@ -2,23 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$keys = [
-    'HTTP_CLIENT_IP',
-    'HTTP_X_FORWARDED_FOR',
-    'REMOTE_ADDR'
-  ];
-  foreach ($keys as $key) {
-    if (!empty($_SERVER[$key])) {
-      $ip = trim(end(explode(',', $_SERVER[$key])));
-      if (filter_var($ip, FILTER_VALIDATE_IP)) {
-        $ipToWrite = $ip;
-      }
-    }
-  }
-  date_default_timezone_set("ini_get('date.timezone')");
-  $file = fopen(__DIR__ . '/file.txt', 'a');
-  fputs($file, $ipToWrite . ', ' . $_SERVER['HTTP_USER_AGENT'] . ', ' . $_SERVER['REQUEST_METHOD'] . ', ' . $_SERVER['QUERY_STRING'] . ', ' . $_SERVER['REQUEST_URI'] . ', ' . date("Y-m-d H:i:s") . PHP_EOL);
-  fclose($file);
 
 try{
     $route = $_GET['route'] ?? '';
