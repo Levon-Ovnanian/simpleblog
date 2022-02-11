@@ -1,12 +1,1 @@
-.idea/.gitignore
-.idea/dataSources.xml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/modules.xml
-.idea/myproject.loc.iml
-.idea/php.xml
-.idea/sqldialects.xml
-.idea/workspace.code-workspace
-.vscode/extensions.json
-.vscode/launch.json
-.vscode/settings.json
 laravel.loc/
