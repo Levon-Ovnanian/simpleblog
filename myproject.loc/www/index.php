@@ -2,7 +2,6 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-
 try{
     $route = $_GET['route'] ?? '';
     $routes = require __DIR__ . '/../src/routes.php';
