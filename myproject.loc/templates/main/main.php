@@ -57,10 +57,10 @@
             <option value= "nickname">автору статьи</option><input type="text" name="mainSearchPanelArguments">
         </select></p>
         <p><input type="submit" value="сортировать"></p>
-    </form>     
-    <h3><?= $error;?></h3>
-<?php else: ?>
+    </form> 
 
+    <h3 style="text-align: center;"><?= $error;?></h3>
+<?php else: ?>
     <form action="/" method="post">
         <p><select size="1" name="orderBy">
             <?php if ($orderBy === 'ratingDESC'): ?>
@@ -101,10 +101,9 @@
             <option value= "text">тексту статьи</option>
             <option value= "nickname">автору статьи</option><input type="text" name="mainSearchPanelArguments">
         </select></p>
-        <p><input type="submit" value="сортировать"></p>
-                     
+        <p><input type="submit" value="сортировать"></p>                
     </form>
-    
+   
     <h3>Всего статей: <?= $articlesCount; ?></h3>
     <?php for ($i = 0; $i != count($articles); $i++): ?>
         <h2><a href="/articles/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getName(); ?></a>&nbsp;&nbsp;&nbsp;
@@ -123,7 +122,6 @@
         Рейтинг пользователя: <?= $articles[$i]->getAuthorId()->getRating(); ?><br>
         <hr>
     <?php endfor; ?>
-
 <?php endif;?>
 
 <div style="text-align: center">   
