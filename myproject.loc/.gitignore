@@ -9,3 +9,5 @@
 .vscode/extensions.json
 .vscode/launch.json
 .vscode/settings.json
+bin/
+src/MyProject/Cli

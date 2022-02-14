@@ -286,18 +286,43 @@ abstract class ActiveRecordEntity implements \JsonSerializable
      * @param string $orderBy
      * @return array|null
      */
-    public static function getStartingIdForSortingWithSearchArgs(string $join, string $searchArgs, string $orderBy): ?array 
+    public static function getStartingIdForSortingWithSearchArgs(array $searchArgs, string $orderBy, string $optional = ''): ?array 
     {
         $db = Db::getInstance(); ///check if connection with Db is active;
-        
-        $result = $db->query('SELECT articles.id FROM articles ' . $join . ' WHERE ' . $searchArgs . ' ORDER BY ' . $orderBy . ';'
-        );
+        if ($optional === 'ratingDESC' AND $searchArgs[0] === 'nickname'){
+            $sql = $db->query('SELECT articles.id FROM ' . static::getTableName() . ' INNER JOIN users ON users.nickname LIKE :value WHERE articles.plus >= 10 AND articles.author_id = users.id ORDER BY ' . $orderBy . ';',
+                [
+                    ':value' => "%" . $searchArgs[1]. "%"
+                ]
+            );   
 
-        if ($result === []) {
+        }
+        elseif ($optional === 'ratingDESC') {
+            $sql = $db->query('SELECT articles.id FROM ' . static::getTableName() . ' WHERE articles.plus >= 10 AND articles.' . $searchArgs[0] . ' LIKE :value ORDER BY ' . $orderBy . ';',
+                [
+                    ':value' => "%" . $searchArgs[1]. "%"
+                ]
+            );     
+        }
+        elseif ($searchArgs[0] === 'nickname') {
+            $sql = $db->query('SELECT articles.id FROM ' . static::getTableName() . ' INNER JOIN users WHERE users.nickname LIKE :value AND articles.author_id = users.id ORDER BY ' . $orderBy . ';',
+                [
+                    ':value' => "%" . $searchArgs[1]. "%"
+                ]
+            );        
+
+        } else {
+            $sql = $db->query('SELECT articles.id FROM articles  WHERE articles.' . $searchArgs[0] . ' LIKE :value ORDER BY ' . $orderBy . ';',
+                [   
+                    ':value' => "%" . $searchArgs[1] . "%",
+                ]
+            );
+        }
+        if ($sql === []) {
             return null;
         }
 
-        return $result;
+        return $sql;
     }
 
     /**
@@ -312,23 +337,25 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
          
         if ($getValues[0] === 'nickname') {
-           $sql = "SELECT DISTINCT articles.id FROM articles INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%'
-            AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id ORDER BY articles.id " . $orderBy . ";";
-            /* $sql = "SELECT DISTINCT users_comments.article_id FROM users_comments INNER JOIN users ON users.nickname LIKE '%" 
-                . $getValues[1] . "%' WHERE users.id = users_comments.user_id ORDER BY users_comments.article_id " . $orderBy . ";";
-             */   
+            $sql = $db->query('SELECT DISTINCT articles.id as id FROM articles INNER JOIN users ON users.nickname LIKE :value
+            AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id ORDER BY articles.id ' . $orderBy . ';',
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]
+            );
         } else {
-            $sql = "SELECT DISTINCT users_comments.article_id FROM users_comments INNER JOIN articles ON articles." . $getValues[0] . " LIKE '%" 
-                . $getValues[1] . "%' WHERE articles.id = users_comments.article_id ORDER BY users_comments.article_id " . $orderBy . ";";
+            $sql = $db->query('SELECT DISTINCT users_comments.article_id as id FROM users_comments INNER JOIN articles ON articles.' . $getValues[0] . ' LIKE :value
+                WHERE articles.id = users_comments.article_id ORDER BY users_comments.article_id ' . $orderBy . ';',
+                [   
+                    ':value' => "%" . $getValues[1] . "%"
+                ]        
+            );
         }
 
-        $result = $db->query($sql);
-
-        if ($result === []) {
+        if ($sql === []) {
             return null;
         }
-
-        return $result;
+        return $sql;
     }
 
     /**
@@ -424,30 +451,48 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
    
         if ($optional === 'ratingDESC' AND $getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $searchArgs = "articles.plus > 10 AND users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+            return  $db->query('SELECT articles.* FROM ' . static::getTableName() . ' INNER JOIN users ON users.' . $getValues[0] . ' LIKE :value  WHERE articles.id <= ' . $startId . ' AND articles.plus >= 10 AND articles.author_id = users.id ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         }
         elseif ($optional === 'ratingDESC') {
-            $join = '';
-            $searchArgs = "articles.plus > 10 AND articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+             return  $db->query('SELECT articles.* FROM ' . static::getTableName() . ' WHERE articles.id <= ' . $startId . ' AND articles.plus >= 10 AND articles.' . $getValues[0] . ' LIKE :value ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         }
         elseif ($getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $searchArgs = "users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+            return $db->query('SELECT articles.* FROM ' . static::getTableName() . ' INNER JOIN users ON users.' . $getValues[0] . ' LIKE :value  WHERE articles.id <= ' . $startId . ' AND articles.author_id = users.id ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         } else {
-            $join = '';
-            $searchArgs = "articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+            return $db->query('SELECT articles.* FROM ' . static::getTableName() . ' WHERE articles.id <= ' . $startId . ' AND articles.' . $getValues[0] . ' LIKE :value ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         }
-
-        $idAsArray = static::getStartingIdForSortingWithSearchArgs($join,  $searchArgs, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
-        $nextPage = ($pageNum - 1) * $itemsPerPage;
-        $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
-        
-        return $db->query('SELECT articles.* FROM articles ' . $join . ' WHERE articles.id <= ' . $startId . ' AND ' . $searchArgs .
-            ' ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
-            [],
-            static::class
-        );
     }
 
     /**
@@ -460,35 +505,32 @@ abstract class ActiveRecordEntity implements \JsonSerializable
      * @param string $optional ///optional query condition extending parameter;
      * @return array
      */
-    public static function getPageWithSearchArgsASC(int $pageNum, int $itemsPerPage, array $getValues, string $orderBy = 'articles.id ASC', string $optional = ''): array
+    public static function getPageWithSearchArgsASC(int $pageNum, int $itemsPerPage, array $getValues, string $orderBy = 'articles.id ASC'): array
     {
         $db = Db::getInstance(); ///check if connection with Db is active;
    
-        if ($optional === 'ratingDESC' AND $getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $searchArgs = "articles.plus > 10 AND users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
-        }
-        elseif ($optional === 'ratingDESC') {
-            $join = '';
-            $searchArgs = "articles.plus > 10 AND articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
-        }
-        elseif ($getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $searchArgs = "users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
+        if ($getValues[0] === 'nickname') {
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+            return  $sql = $db->query('SELECT articles.* FROM ' . static::getTableName() . ' INNER JOIN users ON users.' . $getValues[0] . ' LIKE :value  WHERE articles.id >= ' . $startId . ' AND articles.author_id = users.id ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         } else {
-            $join = '';
-            $searchArgs = "articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
+            $idAsArray = static::getStartingIdForSortingWithSearchArgs($getValues, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
+            $nextPage = ($pageNum - 1) * $itemsPerPage;
+            $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
+            return  $sql = $db->query('SELECT articles.* FROM ' . static::getTableName() . ' WHERE articles.id >= ' . $startId . ' AND articles.' . $getValues[0] . ' LIKE :value ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
+                [
+                    ':value' => "%" . $getValues[1]. "%"
+                ], 
+                static::class
+            );     
         }
 
-        $idAsArray = static::getStartingIdForSortingWithSearchArgs($join,  $searchArgs, $orderBy); ///initiates array of all articles id to use it as a map in page pagination; 
-        $nextPage = ($pageNum - 1) * $itemsPerPage;
-        $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
-        
-        return $db->query('SELECT articles.* FROM articles ' . $join . ' WHERE articles.id >= ' . $startId . ' AND ' . $searchArgs .
-            ' ORDER BY ' . $orderBy . ' LIMIT ' . $itemsPerPage . ';',
-            [],
-            static::class
-        );
     }
 
    /**
@@ -525,23 +567,33 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
    
         if ($optional === 'ratingDESC' AND $getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $pageCountsArgs = "WHERE articles.plus > 10 AND users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
+             $sql = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' INNER JOIN users WHERE articles.plus >= 10 AND users.' . $getValues[0] . ' LIKE :value AND articles.author_id = users.id',
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]
+            );         
         }
         elseif ($optional === 'ratingDESC') {
-            $join = '';
-            $pageCountsArgs = "WHERE articles.plus > 10 AND articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
+            $sql = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' WHERE articles.plus >= 10 AND articles.' . $getValues[0] . ' LIKE :value;',
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]
+            );     
         }
         elseif ($getValues[0] === 'nickname') {
-            $join = 'INNER JOIN users';
-            $pageCountsArgs = "WHERE users." . $getValues[0] . " LIKE '%". $getValues[1] . "%' AND articles.author_id = users.id";
+            $sql = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' INNER JOIN users WHERE users.' . $getValues[0] . ' LIKE :value AND articles.author_id = users.id;',
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]
+            );     
         } else {
-            $join = '';
-            $pageCountsArgs = "WHERE articles." . $getValues[0] . " LIKE '%". $getValues[1] . "%'";
-        }
-
-        $result = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' ' .  $join . ' ' . $pageCountsArgs .';');     
-        return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt];
+            $sql = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' WHERE articles.' . $getValues[0] . ' LIKE :value;',
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]
+            );     
+        }   
+        return [(int)ceil($sql[0]->cnt / $itemsPerPage), (int)$sql[0]->cnt];
     }
       
 
@@ -557,18 +609,23 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
 
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT COUNT(DISTINCT articles.id) AS cnt FROM articles INNER JOIN users 
-            ON users.nickname LIKE '%". $getValues[1] ."%' AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id;";    
+            $sql = $db->query('SELECT COUNT(DISTINCT articles.id) AS cnt FROM articles INNER JOIN users 
+            ON users.nickname LIKE :value AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id;',
+                [
+                    ':value' => "%". $getValues[1] ."%"
+                ]
+            );    
         } elseif (!empty($getValues)) {
-            $sql = "SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles 
-                ON articles." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE articles.id = users_comments.article_id;";
+            $sql = $db->query('SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles 
+                ON articles.' . $getValues[0] . ' LIKE :value WHERE articles.id = users_comments.article_id;',
+                [
+                    ':value' => "%". $getValues[1] ."%"
+                ]
+            );
         } else {
-            $sql = "SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;";
+            $sql = $db->query('SELECT COUNT(DISTINCT users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;');
         }
-
-        $result = $db->query($sql); 
-        
-        return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt];
+        return [(int)ceil($sql[0]->cnt / $itemsPerPage), (int)$sql[0]->cnt];
     }
    /**
     * Undocumented function
@@ -582,18 +639,20 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         $db = Db::getInstance(); ///check if connection with Db is active;
 
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN users 
-                ON users." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE users.id = users_comments.user_id;";
+            $sql = $db->query("SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN users 
+                ON users." . $getValues[0] . " LIKE :value WHERE users.id = users_comments.user_id;",
+                [
+                    ':value' => "%" . $getValues[1] . "%"
+                ]    
+            );
         } elseif (!empty($getValues)) {
             $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles 
-                ON articles." . $getValues[0] . " LIKE '%". $getValues[1] ."%' WHERE articles.id = users_comments.article_id;";
+                ON articles." . $getValues[0] . " LIKE :value WHERE articles.id = users_comments.article_id;";
         } else {
-            $sql = "SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;";
+            $sql = $db->query("SELECT COUNT(users_comments.article_id) AS cnt FROM users_comments INNER JOIN articles WHERE articles.id = users_comments.article_id;");
         }
-
-        $result = $db->query($sql); 
         
-        return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt];
+        return [(int)ceil($sql[0]->cnt / $itemsPerPage), (int)$sql[0]->cnt];
     }
  
     /**
@@ -691,29 +750,33 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         
         $idAsArray = static::getStartingIdForSortingWithCommentsWithSearchArgs('DESC', $getValues); ///initiates array of all articles id to use it as a map in page pagination; 
         $nextPage = ($pageNum - 1) * $itemsPerPage;
-        $startId = $idAsArray[$nextPage]->article_id; ///starting article id in query;
+        $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
         
         if ($getValues[0] === 'nickname') {
-            /*$sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
-                FROM " . static::getTableName() . " INNER JOIN users_comments ON articles.id = users_comments.article_id 
-                INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%' AND users.id = users_comments.user_id
-                WHERE articles.id <= " .  $startId . " order by articles.id DESC LIMIT " . $itemsPerPage . ";";*/
-        $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at FROM " . static::getTableName() . " 
-        INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%' AND users.id = articles.author_id INNER JOIN users_comments WHERE articles.id = users_comments.article_id order by articles.id DESC LIMIT " . $itemsPerPage . ";";
+            $sql = $db->query('SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at FROM ' . static::getTableName() . ' 
+                INNER JOIN users ON users.nickname LIKE :value AND users.id = articles.author_id 
+                INNER JOIN users_comments ON articles.id = users_comments.article_id WHERE articles.id <= ' .  $startId . ' ORDER BY articles.id DESC LIMIT ' . $itemsPerPage . ';',
+                    [
+                        ':value' => "%" . $getValues[1] . "%" 
+                    ],
+                    static::class
+            );
         } else {
-            $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
-                FROM " . static::getTableName() . " INNER JOIN users_comments ON articles." . $getValues[0] . " LIKE '%" . $getValues[1] . "%'
+            $sql = $db->query('SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
+                FROM ' . static::getTableName() . ' INNER JOIN users_comments ON articles.' . $getValues[0] . ' LIKE :value
                 AND users_comments.article_id = articles.id 
-                WHERE articles.id <= " .  $startId . " order by articles.id DESC LIMIT ". $itemsPerPage . ";";
+                WHERE articles.id <= ' .  $startId . ' ORDER BY articles.id DESC LIMIT '. $itemsPerPage . ';',
+                    [
+                        ':value' => "%" . $getValues[1] . "%" 
+                    ],
+                    static::class
+            );
         }
 
-        $result = $db->query($sql, [], static::class);
-
-        if ($result === []) { 
+        if ($sql === []) { 
             return null;
-        }
-            
-        return $result; 
+        }  
+        return $sql; 
     }
 
     /**
@@ -730,28 +793,33 @@ abstract class ActiveRecordEntity implements \JsonSerializable
         
         $idAsArray = static::getStartingIdForSortingWithCommentsWithSearchArgs('ASC', $getValues); ///initiates array of all articles id to use it as a map in page pagination;
         $nextPage = ($pageNum - 1) * $itemsPerPage;
-        $startId = $idAsArray[$nextPage]->article_id; ///starting article id in query;
+        $startId = $idAsArray[$nextPage]->id; ///starting article id in query;
 
         if ($getValues[0] === 'nickname') {
-            $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
-                FROM " . static::getTableName() . " INNER JOIN users_comments ON articles.id = users_comments.article_id 
-                INNER JOIN users ON users.nickname LIKE '%" . $getValues[1] . "%' AND users.id = users_comments.user_id
-                WHERE articles.id >= " .  $startId . " order by articles.id ASC LIMIT " . $itemsPerPage . ";";
-        
+            $sql = $db->query('SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at FROM ' . static::getTableName() . ' 
+                INNER JOIN users ON users.nickname LIKE :value AND users.id = articles.author_id 
+                INNER JOIN users_comments ON articles.id = users_comments.article_id WHERE articles.id >= ' .  $startId . ' ORDER BY articles.id DESC LIMIT ' . $itemsPerPage . ';',
+                    [
+                        ':value' => "%" . $getValues[1] . "%" 
+                    ],
+                    static::class
+            );
         } else {
-            $sql = "SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
-                FROM " . static::getTableName() . " INNER JOIN users_comments ON articles." . $getValues[0] . " LIKE '%" . $getValues[1] . "%'
+            $sql = $db->query('SELECT DISTINCT articles.id, articles.author_id, articles.name, articles.text, articles.created_at 
+                FROM ' . static::getTableName() . ' INNER JOIN users_comments ON articles.' . $getValues[0] . ' LIKE :value
                 AND users_comments.article_id = articles.id 
-                WHERE articles.id >= " .  $startId . " order by articles.id ASC LIMIT ". $itemsPerPage . ";";
+                WHERE articles.id >= ' .  $startId . ' ORDER BY articles.id DESC LIMIT '. $itemsPerPage . ';',
+                    [
+                        ':value' => "%" . $getValues[1] . "%" 
+                    ],
+                    static::class
+            );
         }
-        
-        $result = $db->query($sql, [], static::class);
 
-        if ($result === []) { 
+        if ($sql === []) { 
             return null;
-        }
-            
-        return $result; 
+        }  
+        return $sql; 
     }
 
     /**
@@ -933,7 +1001,7 @@ abstract class ActiveRecordEntity implements \JsonSerializable
 
         $result = $db->query('SELECT * FROM ' . static::getTableName() .
             ' WHERE users.nickname LIKE :value ORDER BY created_at DESC;',
-            [':value' => '%' .$value . '%'],
+            [':value' => '%' . $value . '%'],
             static::class
         );
         

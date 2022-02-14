@@ -69,7 +69,7 @@ class MainController extends AbstractController
                     $articles = Article::getPageWithSearchArgs($pageNum, $itemsPerPage, $searchArgAsArray);
                 }
                 elseif ($orderBy === 'withComments') {
-                    $pagesCountAsArray = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
+                        $pagesCountAsArray = Article::getPagesWithCommentsCount($itemsPerPage, $searchArgAsArray);
                     $articlesCount = $pagesCountAsArray[1];
                     if ($articlesCount == false) {
                         throw new NotFoundException('Привет! К сожалению, у нас нет статей c таким фильтром!');
