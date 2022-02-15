@@ -548,9 +548,8 @@ abstract class ActiveRecordEntity implements \JsonSerializable
             $result = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ' WHERE plus >= 10;',);
             return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt]; 
         }
-
+        
         $result = $db->query('SELECT COUNT(*) AS cnt FROM ' . static::getTableName() . ';',); 
-          
         return [(int)ceil($result[0]->cnt / $itemsPerPage), (int)$result[0]->cnt];
     }
 
