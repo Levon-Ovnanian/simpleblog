@@ -101,7 +101,7 @@
                 &nbsp;&nbsp;&nbsp;
                 <p style="word-wrap: break-word;"><?= $article->getShortText(150); ?></p>
                 Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a><br>
-                <span>Рейтинг статьи: + <?= $article->getPlus(); ?> | <?= $article->getMinus(); ?></span><br>
+                <span>Рейтинг статьи: <?= $article->getPlus(); ?> | <?= $article->getMinus(); ?></span><br>
                 <span>Рейтинг автора: <?= $article->getAuthorId()->getRating(); ?><br><br>
                 <a href="/articles/<?= $article->getId(); ?>/edit/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>">Редактировать</a>
                 | <a href="/articles/<?= $article->getId()?>/delete/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName?>/<?= $searchPanelArgs?>" style="color: red;">Удалить</a> 
