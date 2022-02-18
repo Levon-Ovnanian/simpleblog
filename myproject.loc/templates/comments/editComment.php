@@ -1,6 +1,6 @@
 <?php include __DIR__ . '/../main/header.php'; ?>
 
-<img src="http://176.36.123.219/uploads/profile_images/<?= $comment->getUserId()->getIconPath(); ?>" height="80px">
+<img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $comment->getUserId()->getIconPath(); ?>" height="80px">
 <p style="padding-left: 10px;"><?= $comment->getUserId()->getNickname(); ?></p>
 <p style="border: 1px solid black;"><?= $comment->getText(); ?></p>
 <p><?= $comment->getCreatedAt(); ?></p>

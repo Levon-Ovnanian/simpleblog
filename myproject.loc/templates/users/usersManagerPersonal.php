@@ -2,7 +2,7 @@
 
 <tr style="">    
     <td style="border: 2px black solid;">       
-        <img src="http://176.36.123.219/uploads/profile_images/<?= $userManaged->getIconPath(); ?>" height="80px" id= "<?= $userManaged->getId(); ?>"> 
+        <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $userManaged->getIconPath(); ?>" height="80px" id= "<?= $userManaged->getId(); ?>"> 
         <a href="/user/<?= $userManaged->getId();?>"><h3><?= $userManaged->getNickName(); ?></h3></a>
         <?php if (isset($formOptionData[6]) AND $formOptionData[6] === $userManaged->getId()): ?>            
             <p>Роль:</p>
@@ -202,7 +202,7 @@
             <p>Количество фолловеров: <?= count($followers[0]); ?></p>
             <?php if (!empty($followers[0])):?>
                 <?php foreach($followers[0] as $follower):?>
-                    <img src="http://176.36.123.219/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
+                    <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
                     <p>Логин: <a href ="/user/<?= $follower->getId(); ?>"><?= $follower->getNickName(); ?></a>
                     <p>Почта: <?= $follower->getEmail(); ?>
                     <br>
@@ -219,7 +219,7 @@
             <?php if (!empty($subscribes[0])):?>
                 <?php for ($x = 0; $x < count($subscribes[0]); $x++):?>
                     <?php foreach($subscribes[0][$x] as $subscribe):?>
-                        <img src="http://176.36.123.219/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
+                        <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
                         <p>Логин: <a href ="/user/<?= $subscribe->getId(); ?>"><?= $subscribe->getNickName(); ?></a>
                         <p>Почта: <?= $subscribe->getEmail(); ?>
                         <br>

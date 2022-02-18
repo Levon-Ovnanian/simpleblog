@@ -8,8 +8,8 @@
     </head>
     <body>
         <table class="layout">
-            <tr >
-                <td colspan="2" class="header">
+            <tr>
+                <td colspan="2" class="header" >
                     Simple blog
                 </td>
             </tr>
@@ -20,7 +20,8 @@
                         Привет, <?= $user->getNickname(); ?> | <a href="/users/logout">Выйти</a>
                     <?php else: ?>
                     <a href="/users/login">Войти</a> | <a href="/users/register">Зарегистрироваться</a>
-                    <?php endif; ?>        
+                    <?php endif; ?> 
+                </td>       
             </tr>
             
             <tr>

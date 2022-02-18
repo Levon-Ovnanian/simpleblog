@@ -106,16 +106,17 @@
    
     <h3>Всего статей: <?= $articlesCount; ?></h3>
     <?php for ($i = 0; $i != count($articles); $i++): ?>
-        <h2><a href="/articles/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getName(); ?></a>&nbsp;&nbsp;&nbsp;
+        <h2>
             <?php if (!empty($comments[$i])):?>
-                <span style="font-size: medium;"><?= $comments[$i][0]->getCount();?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+                <span style="font-size: medium;"><?= $comments[$i][0]->getCount();?></span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px">
             <?php else: ?>
-                <span style="font-size: medium;"><?php echo('0');?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+                <span style="font-size: medium;"><?php echo('0');?></span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px">
             <?php endif; ?>        
+            <a href="/articles/<?= $articles[$i]->getId(); ?>"><span style="word-wrap: break-word;"><?= $articles[$i]->getName(); ?></span></a>&nbsp;&nbsp;&nbsp;
         </h2>
-        <a href="/articles/<?= $articles[$i]->getId(); ?>/plusarticle/<?= $articles[$i]->getAuthorId()->getId(); ?>/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName; ?>/<?= $searchPanelArgs; ?>"><img src="http://176.36.123.219/service_images/arrow_up154593.svg" height="10px"></a><?= $articles[$i]->getPlus(); ?>
-        <a href="/articles/<?= $articles[$i]->getId(); ?>/minusarticle/<?= $articles[$i]->getAuthorId()->getId(); ?>/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName; ?>/<?= $searchPanelArgs; ?>"><img src="http://176.36.123.219/service_images/arrow_down154593.svg" height="10px"></a><?= $articles[$i]->getMinus(); ?>   
-        <p><?= $articles[$i]->getShortText(300); ?></p>
+        <a href="/articles/<?= $articles[$i]->getId(); ?>/plusarticle/<?= $articles[$i]->getAuthorId()->getId(); ?>/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName; ?>/<?= $searchPanelArgs; ?>"><img src="http://simpleblog.sytes.net/service_images/arrow_up154593.svg" height="10px"></a><?= $articles[$i]->getPlus(); ?>
+        <a href="/articles/<?= $articles[$i]->getId(); ?>/minusarticle/<?= $articles[$i]->getAuthorId()->getId(); ?>/<?= $currentPageNum; ?>/<?= $orderBy; ?>/<?= $searchPanelName; ?>/<?= $searchPanelArgs; ?>"><img src="http://simpleblog.sytes.net/service_images/arrow_down154593.svg" height="10px"></a><?= $articles[$i]->getMinus(); ?>   
+        <p style="word-wrap: break-word;"><?= $articles[$i]->getShortText(300); ?></p>
         <p>Автор:<a href=/user/<?= $articles[$i]->getAuthorId()->getId(); ?>><?= $articles[$i]->getAuthorId()->getNickname(); ?></a>
         <br>
         Cтатус пользователя: <span style="color: red;"><?= $articles[$i]->getAuthorId()->getStatus(); ?></span><br>

@@ -4,7 +4,7 @@
         <p style="color: red;"><?= $error ?></p>
     <?php endif; ?>
 
-    <img src="http://176.36.123.219/uploads/profile_images/<?= $user->getIconPath(); ?>" height="80px">
+    <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $user->getIconPath(); ?>" height="80px">
     <h1><?= $user->getNickName(); ?></h1>
     <p>Загрузить аватар:</p>
     <form action="/users/cabinet/personalpage" method="post" enctype="multipart/form-data">
@@ -96,7 +96,7 @@
         <?php if (!empty($followers[0])):?>
             <p>Количество фолловеров: <?= count($followers[0]); ?></p>
             <?php foreach($followers[0] as $follower):?>
-                <img src="http://176.36.123.219/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
+                <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $follower->getIconPath(); ?>" height="40px">
                 <p>Логин: <a href = "/user/<?= $follower->getId(); ?>"><?= $follower->getNickName(); ?></a>
                 <br>
                 <br>
@@ -108,7 +108,7 @@
             <p>Количество авторов: <?= count($subscribes[0]); ?></p>
             <?php for ($x = 0; $x < count($subscribes[0]); $x++):?>
                 <?php foreach($subscribes[0][$x] as $subscribe):?>
-                    <img src="http://176.36.123.219/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
+                    <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $subscribe->getIconPath(); ?>" height="40px">
                     <p>Логин: <a href = "/user/<?= $subscribe->getId(); ?>"><?= $subscribe->getNickName(); ?></a>
                     <br>
                     <hr>

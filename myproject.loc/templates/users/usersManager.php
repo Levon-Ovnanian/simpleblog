@@ -219,7 +219,7 @@
             <?php for ($i = 0; $i < count($users); $i++):?>
                 <tr>    
                     <td style="border: 2px black solid;">       
-                        <img src="http://176.36.123.219/uploads/profile_images/<?= $users[$i]->getIconPath(); ?>" height="80px" id= "<?= $users[$i]->getId(); ?>"> 
+                        <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $users[$i]->getIconPath(); ?>" height="80px" id= "<?= $users[$i]->getId(); ?>"> 
                         <a href="/users/edit/personal/<?= $users[$i]->getId();?>"><h3><?= $users[$i]->getNickName(); ?></h3></a>
                         <?php if ($users[$i]->getRole() === 'admin'): ?>
                             <p>Роль: Администратор</p>

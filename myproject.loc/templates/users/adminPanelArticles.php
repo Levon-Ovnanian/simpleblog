@@ -93,13 +93,13 @@
                     <?php foreach ($comments as $comment): ?>
                         <?php if ($comment[0]-> getArticleId() === $article->getId()): ?> 
                             <span style="font-size: medium;"><?= count($comment); ?>                
-                            </span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+                            </span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px">
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php endif; ?>            
-                <p>"<a href="/articles/<?= $article->getId()?>"><?= $article->getName(); ?>"</a></p>
+                <p style="word-wrap: break-word;">"<a href="/articles/<?= $article->getId()?>"><?= $article->getName(); ?>"</a></p>
                 &nbsp;&nbsp;&nbsp;
-                <p><?= $article->getShortText(150); ?></p>
+                <p style="word-wrap: break-word;"><?= $article->getShortText(150); ?></p>
                 Автор: <a href=/user/<?= $article->getAuthorId()->getId(); ?>><?= $article->getAuthorId()->getNickname(); ?></a><br>
                 <span>Рейтинг статьи: + <?= $article->getPlus(); ?> | <?= $article->getMinus(); ?></span><br>
                 <span>Рейтинг автора: <?= $article->getAuthorId()->getRating(); ?><br><br>

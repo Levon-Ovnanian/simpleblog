@@ -2,7 +2,7 @@
 
 <?php if($error): ?>
     <?php if ($author):?>
-        <img src="http://176.36.123.219/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
+        <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
         <h2><?= $author->getNickName(); ?></h2>
         <h3>
             Cтатус пользователя: <span style="color: red;"><?= $author->getStatus(); ?></span><br>
@@ -45,7 +45,7 @@
     <?php endif; ?>      
     <h3 style="text-align: center;"><?= $error; ?></h3>
 <?php else: ?>
-    <img src="http://176.36.123.219/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
+    <img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $author->getIconPath(); ?>" height="80px">
     <h2><?= $author->getNickName(); ?></h2>
     <h3>
         Cтатус пользователя: <span style="color: red;"><?= $author->getStatus(); ?></span><br>
@@ -104,14 +104,15 @@
     </form>
     <br>
     <?php for ($i = 0; $i != count($articles); $i++): ?>
-        <h2><a href="/articles/<?= $articles[$i]->getId(); ?>"><?= $articles[$i]->getName(); ?></a> &nbsp;&nbsp;&nbsp;
+        <h2>
             <?php if (!empty($commentsCountForArticles[$i])):?>
-                <span style="font-size: medium;"><?= $commentsCountForArticles[$i][0]->getCount();?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+                <span style="font-size: medium;"><?= $commentsCountForArticles[$i][0]->getCount();?></span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px">
             <?php else: ?>
-                <span style="font-size: medium;"><?php echo('0');?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px">
+                <span style="font-size: medium;"><?php echo('0');?></span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px">
             <?php endif; ?>        
+            <a href="/articles/<?= $articles[$i]->getId(); ?>"><span style="word-wrap: break-word;"><?= $articles[$i]->getName(); ?></span></a> &nbsp;&nbsp;&nbsp;
         </h2>
-        <p><?= $articles[$i]->getShortText(300); ?></p>
+        <p style="word-wrap: break-word;"><?= $articles[$i]->getShortText(300); ?></p>
         <hr>
     <?php endfor; ?>   
 <?php endif; ?>

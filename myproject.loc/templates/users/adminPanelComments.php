@@ -4,11 +4,10 @@
     <p><strong>Комментарии</strong></p>
     <?php if (!empty($comments)): ?>
         <?php for ($i = 0; $i <count($comments); $i++): ?>
-            <span style="font-size: medium;"><?= count($comments[$i]);?></span><img src="http://176.36.123.219/service_images/message-4221533.svg" height="20px"><br>
-            <a href ="/articles/<?= $comments[$i][0]->getArticleId(); ?>" style="color: darkblue;">
-            <?= $comments[$i][0]->getArticle()->getName(); ?></a>
+            <span style="font-size: medium;"><?= count($comments[$i]);?></span><img src="http://simpleblog.sytes.net/service_images/message-4221533.svg" height="20px"><br>
+            <a href ="/articles/<?= $comments[$i][0]->getArticleId(); ?>" style="color: darkblue;"><span style="word-wrap: break-word;"><?= $comments[$i][0]->getArticle()->getName(); ?></span></a>
             &nbsp;&nbsp;&nbsp;
-            </p>
+           
             <?php foreach ($comments[$i] as $commentData): ?>     
                 <?php if ($commentData->getSourceCommentId()): ?>
                     Ответ на комментарий от <span style="color: blue;"><?= $commentData->getSourceCommentUser()->getNickname(); ?></span><br>
@@ -20,7 +19,7 @@
                         <?= $commentData->getRedactedAt() ; ?></span>
                     <?php endif; ?>
                 <?php else: ?>
-                    <?= $commentData->getShortText(150); ?></p> 
+                    <p style="word-wrap: break-word;"><?= $commentData->getShortText(150); ?></p> 
                     <span>автор комментария :<?= $commentData->getUserId()->getNickname(); ?></span>
                     <br>
                     <span> <?= $commentData->getCreatedAt(); ?></span><br>

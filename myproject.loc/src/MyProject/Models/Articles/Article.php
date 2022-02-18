@@ -233,6 +233,9 @@ class Article extends ActiveRecordEntity
         if (preg_match('/^[0]$/', $fields['text'])) {
             $fields['text'] = '0 ';
         }
+        if (strlen($fields['name']) > 60) {
+            throw new InvalidArgumentException('Слишком длинное название статьи');
+        }  
 
         $article = new Article();
         $article->setAuthor($author);

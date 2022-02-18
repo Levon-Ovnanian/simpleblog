@@ -1,14 +1,14 @@
 <?php include __DIR__ . '/../main/header.php'; ?>
 
-<img src="http://176.36.123.219/uploads/profile_images/<?= $articles->getAuthorId()->getIconPath(); ?>" height="80px">
+<img src="http://simpleblog.sytes.net/uploads/profile_images/<?= $articles->getAuthorId()->getIconPath(); ?>" height="80px">
 <br>
 <h2><a href=/user/<?= $articles->getAuthorId()->getId(); ?>><?= $articles->getAuthorId()->getNickname(); ?></a></h2>
 Рейтинг пользователя: <?= $articles->getAuthorId()->getRating(); ?><br>
 Cтатус пользователя: <span style="color: red;"><?= $articles->getAuthorId()->getStatus(); ?></span><br>
-<h1><?= $articles->getName(); ?></h1>
+<h1 style="word-wrap: break-word;"><?= $articles->getName(); ?></h1>
 
-<a href="/articles/<?= $articles->getId(); ?>/plusarticle/<?= $articles->getAuthorId()->getId(); ?>/0/null/null/null"><img src="http://176.36.123.219/service_images/arrow_up154593.svg" height="10px"></a><?= $articles->getPlus(); ?></a>
-<a href="/articles/<?= $articles->getId(); ?>/minusarticle/<?= $articles->getAuthorId()->getId(); ?>/0/null/null/null"><img src="http://176.36.123.219/service_images/arrow_down154593.svg" height="10px"></a><?= $articles->getMinus(); ?></a>
+<a href="/articles/<?= $articles->getId(); ?>/plusarticle/<?= $articles->getAuthorId()->getId(); ?>/0/null/null/null"><img src="http://simpleblog.sytes.net/service_images/arrow_up154593.svg" height="10px"></a><?= $articles->getPlus(); ?></a>
+<a href="/articles/<?= $articles->getId(); ?>/minusarticle/<?= $articles->getAuthorId()->getId(); ?>/0/null/null/null"><img src="http://simpleblog.sytes.net/service_images/arrow_down154593.svg" height="10px"></a><?= $articles->getMinus(); ?></a>
 <p><?= $articles->getParsedText(); ?></p>
 <hr>
 
