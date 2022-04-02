@@ -1,7 +1,7 @@
 # Simple blog
 Hi! <br>
 This repository is simple blog which has a minimal of functionality.<br>
-So, the main goal for me in this project is to get PHP coding practice and even though `the site functionality is written, but I'M STILL AT THE DOCUMENTING STAGE`.<br>
+So, the main goal for me in this project is to get PHP coding practice and even though `the site functionality is finished, but I'M STILL AT THE DOCUMENTING STAGE`.<br>
 Please, be lenient on the visual side of blog :)<br>
 
 `!IMPORTANT!` please, do not use this blog for purposes other than informational!<br>
